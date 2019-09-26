@@ -2174,6 +2174,13 @@
 
           }, 300)
         } catch (err) {
+            // 清空 还原
+            this.rotateDirection[0] = 0
+            this.rotateDirection[1] = 0
+            this.rotateDirection[2] = 0
+
+            this.startTarchDom = null
+            this.endTarchDom = null
           console.log(err);
         }
       }
