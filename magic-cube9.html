@@ -1648,9 +1648,7 @@
                 '5': 'null',
               }
             }
-        
         }
-      
       }
 
       init() {
@@ -1901,7 +1899,8 @@
 
             // console.log('this.colorMap===>', this.colorMap);
            if (this.validateSuccees()) {
-              console.log('恭喜你===>', '恭喜你');
+             alert('congratulation!!!')
+              // console.log('恭喜你===>', '恭喜你');
            }
             
 
@@ -2110,7 +2109,6 @@
     
 
       validateSuccees() {
-
         const leftList = []
         const rightList = []
         const topList = []
@@ -2131,7 +2129,6 @@
         temp.forEach(item => {
           temp.forEach(ktem => {
               topList.push(this.colorMap[item][ktem]['0'])
-
               botList.push(this.colorMap[item][ktem]['6'])
           })
         })
@@ -2153,8 +2150,6 @@
 
         return true
       } 
-    
-    
     }
 
     const base = new Base(document.getElementById('base'))
