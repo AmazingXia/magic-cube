@@ -77,7 +77,7 @@
 
     .base-side {
       /* background-color: #67C23A; */
-      transform: rotate3d(0, 1, 0, -90deg)  translateY(550px);
+      transform: rotate3d(0, 1, 0, -90deg) translateY(550px);
       transform: rotate3d(0, 1, 0, -90deg);
     }
 
@@ -265,6 +265,50 @@
 
     .cube .public:nth-child(6) {
       transform: translate3d(0px, 0px, 40px);
+    }
+
+    .el-message {
+        min-width: 380px;
+        box-sizing: border-box;
+        border: 1px solid #ebeef5;
+        position: fixed;
+        left: 50%;
+        top: 20px;
+        opacity: 0;
+        transform: translateX(-50%) translateY(-40px);
+        transition: opacity .3s,-webkit-transform .4s;
+        transition: opacity .3s,transform .4s;
+        transition: opacity .3s,transform .4s,-webkit-transform .4s;
+        padding: 5px 15px 5px 15px;
+        display: flex;
+        align-items: center;
+        border-radius: 4px;
+        overflow: hidden;
+        background-color: #f0f9eb;
+        border-color: #e1f3d8;
+    }
+
+    .el-message--success .el-message__content {
+      color: #67c23a;
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      line-height: 1;
+    }
+    .success {
+      width: 38px;
+      height: 38px;
+      margin: 0;
+      padding: 0;
+      vertical-align: middle;
+    }
+
+    p {
+      display: block;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
     }
   </style>
 </head>
@@ -1441,7 +1485,10 @@
     </div>
 
   </div>
-
+  <div class="el-message el-message--success" style="z-index: 2002;">
+    <img src="./img/succees.png" alt="" class="success">
+    <p class="el-message__content">congratulation!!!</p>
+  </div>
   <script>
 
     class Base {
@@ -1460,194 +1507,194 @@
         this.colorPosition = [null, null, null, null, null]
 
         this.colorMap = {
-            '0': {
-              '1': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '3': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '5': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-            },
+          '0': {
             '1': {
-              '0': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '1': {
-              '0': 'null',
-                '2': 'null',
-                '4': 'null',
-                '6': 'null',
-              },
-              '2': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '3': {
-              '0': 'null',
-                '2': 'null',
-                '4': 'null',
-                '6': 'null',
-              },
-              '4': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '5': {
-              '0': 'null',
-                '2': 'null',
-                '4': 'null',
-                '6': 'null',
-              },
-              '6': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-            },
-            '2': {
-              '1': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '3': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '5': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
             },
             '3': {
-              '0': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '1': {
-              '0': 'null',
-                '2': 'null',
-                '4': 'null',
-                '6': 'null',
-              },
-              '2': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '3': {
-              '0': 'null',
-                '2': 'null',
-                '4': 'null',
-                '6': 'null',
-              },
-              '4': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '5': {
-              '0': 'null',
-                '2': 'null',
-                '4': 'null',
-                '6': 'null',
-              },
-              '6': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-            },
-            '4': {
-              '1': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '3': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '5': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
             },
             '5': {
-              '0': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '1': {
-                '0': 'null',
-                '2': 'null',
-                '4': 'null',
-                '6': 'null',
-              },
-              '2': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '3': {
-                '0': 'null',
-                '2': 'null',
-                '4': 'null',
-                '6': 'null',
-              },
-              '4': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '5': {
-                '0': 'null',
-                '2': 'null',
-                '4': 'null',
-                '6': 'null',
-              },
-              '6': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+          },
+          '1': {
+            '0': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+            '1': {
+              '0': 'null',
+              '2': 'null',
+              '4': 'null',
+              '6': 'null',
+            },
+            '2': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+            '3': {
+              '0': 'null',
+              '2': 'null',
+              '4': 'null',
+              '6': 'null',
+            },
+            '4': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+            '5': {
+              '0': 'null',
+              '2': 'null',
+              '4': 'null',
+              '6': 'null',
             },
             '6': {
-              '1': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '3': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              },
-              '5': {
-                '1': 'null',
-                '3': 'null',
-                '5': 'null',
-              }
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+          },
+          '2': {
+            '1': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+            '3': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+            '5': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+          },
+          '3': {
+            '0': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+            '1': {
+              '0': 'null',
+              '2': 'null',
+              '4': 'null',
+              '6': 'null',
+            },
+            '2': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+            '3': {
+              '0': 'null',
+              '2': 'null',
+              '4': 'null',
+              '6': 'null',
+            },
+            '4': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+            '5': {
+              '0': 'null',
+              '2': 'null',
+              '4': 'null',
+              '6': 'null',
+            },
+            '6': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+          },
+          '4': {
+            '1': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+            '3': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+            '5': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+          },
+          '5': {
+            '0': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+            '1': {
+              '0': 'null',
+              '2': 'null',
+              '4': 'null',
+              '6': 'null',
+            },
+            '2': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+            '3': {
+              '0': 'null',
+              '2': 'null',
+              '4': 'null',
+              '6': 'null',
+            },
+            '4': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+            '5': {
+              '0': 'null',
+              '2': 'null',
+              '4': 'null',
+              '6': 'null',
+            },
+            '6': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+          },
+          '6': {
+            '1': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+            '3': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
+            },
+            '5': {
+              '1': 'null',
+              '3': 'null',
+              '5': 'null',
             }
+          }
         }
       }
 
@@ -1678,7 +1725,7 @@
 
               const level = secondList[j]
 
-              level.style.transform = `translateZ(${80*(1-j)}px) rotateZ(0deg)`
+              level.style.transform = `translateZ(${80 * (1 - j)}px) rotateZ(0deg)`
 
               for (let k = 0, klen = secondList[j]['children'].length; k < klen; k++) { // 9个block
 
@@ -1727,8 +1774,8 @@
         // console.log('this.startTarchDom===>', this.startTarchDom)
         // console.log('this.endTarchDom===>', this.endTarchDom)
 
-        const { X:x1, Y: y1, Z: z1 } = this.startTarchDom.dataset
-        const { X:x2, Y: y2, Z: z2 } = this.endTarchDom.dataset
+        const { X: x1, Y: y1, Z: z1 } = this.startTarchDom.dataset
+        const { X: x2, Y: y2, Z: z2 } = this.endTarchDom.dataset
 
         // const startToOrigin = Math.sqrt(x1^2 + y1^2 + z1^2)
         // const endToOrigin = Math.sqrt(x2^2 + y2^2 + z2^2)
@@ -1736,27 +1783,27 @@
         const startList = [x1, y1, z1]
         const endList = [x2, y2, z2]
         let index = -1
-        startList.forEach((start,startIndex) => {
-          endList.forEach((end,endIndex) => {
-            if((end - start === 4 || end - start === -4) && startIndex === endIndex) {
+        startList.forEach((start, startIndex) => {
+          endList.forEach((end, endIndex) => {
+            if ((end - start === 4 || end - start === -4) && startIndex === endIndex) {
               // console.log('相差为4=================',start,end,startIndex,endIndex)
-              index  = startIndex
+              index = startIndex
             }
           })
         })
 
         let flag = 0
-        startList.forEach((start,startIndex) => {
-          endList.forEach((end,endIndex) => {
-            if(index != -1 && startIndex != index ) {
-              if(startIndex === endIndex && end === start) {
+        startList.forEach((start, startIndex) => {
+          endList.forEach((end, endIndex) => {
+            if (index != -1 && startIndex != index) {
+              if (startIndex === endIndex && end === start) {
                 flag += 1
                 // console.log('相等',start,end,startIndex,endIndex,'++++++++++++++++',flag)
               }
             }
           })
         })
-        if(flag != 2) {
+        if (flag != 2) {
           // console.log('不满足条件')
           return
         }
@@ -1779,21 +1826,21 @@
         // console.log('distance===>', distance);
 
 
-        const coord = distance.map((item,index) => { // [x1, -4, z1]
-            if (item === 0) {
-                return startList[index]
-            } else {
-                return item
-            }
+        const coord = distance.map((item, index) => { // [x1, -4, z1]
+          if (item === 0) {
+            return startList[index]
+          } else {
+            return item
+          }
         })
         // console.log('coord===>', coord);
 
         const len = coord.map(item => { // 中心坐标为(3,3,3)
-            if (Math.abs(item) !== 4) {
-                return item - 3
-            } else {
-                return item
-            }
+          if (Math.abs(item) !== 4) {
+            return item - 3
+          } else {
+            return item
+          }
         })
         // console.log('len===>', len);
         // len = [距离, -4, 距离]
@@ -1802,58 +1849,58 @@
         let minItem = 4
 
         const rotateObj = {
-            maxIndex: '',
-            minIndex: '',
-            midIndex: '',
-            symbol: 0,
-            axis: ''
+          maxIndex: '',
+          minIndex: '',
+          midIndex: '',
+          symbol: 0,
+          axis: ''
         }
 
         len.forEach((item, index) => {
-            if (Math.abs(item) !== 4) {
+          if (Math.abs(item) !== 4) {
 
-                if (maxItem < Math.abs(item)){
-                    maxItem = Math.abs(item)
-                    rotateObj.maxIndex = index
-                }
-                if (minItem > Math.abs(item)){
-                    minItem = Math.abs(item)
-                    rotateObj.minIndex = index
-                }
-            } else {
-                rotateObj.symbol = item / 4
+            if (maxItem < Math.abs(item)) {
+              maxItem = Math.abs(item)
+              rotateObj.maxIndex = index
             }
+            if (minItem > Math.abs(item)) {
+              minItem = Math.abs(item)
+              rotateObj.minIndex = index
+            }
+          } else {
+            rotateObj.symbol = item / 4
+          }
         })
 
         rotateObj.midIndex = 3 - rotateObj.minIndex - rotateObj.maxIndex
         // console.log('rotateObj===>', rotateObj);
 
         const temp = {
-            'x': 1, // x = 0平面 旋转对应的魔方序号
-            'y': 2, // x = 0平面
-            'z': 0  // z = 0平面
+          'x': 1, // x = 0平面 旋转对应的魔方序号
+          'y': 2, // x = 0平面
+          'z': 0  // z = 0平面
         }
 
         this.rotateDirection[0] = temp[['x', 'y', 'z'][rotateObj.minIndex]]
 
         if (this.rotateDirection[0] === 0 || this.rotateDirection[0] === 2) {
-            this.rotateDirection[1] = (5 - startList[rotateObj.minIndex]) / 2
+          this.rotateDirection[1] = (5 - startList[rotateObj.minIndex]) / 2
         }
         if (this.rotateDirection[0] === 1) {
-            this.rotateDirection[1] = (startList[rotateObj.minIndex] - 1) / 2
+          this.rotateDirection[1] = (startList[rotateObj.minIndex] - 1) / 2
         }
 
         if (rotateObj.midIndex === 0) {
-            this.rotateDirection[2] = rotateObj.symbol * (startList[rotateObj.maxIndex] - 3) / 3
-            if (rotateObj.maxIndex === 1) {
-              this.rotateDirection[2] = -this.rotateDirection[2]
-            }
+          this.rotateDirection[2] = rotateObj.symbol * (startList[rotateObj.maxIndex] - 3) / 3
+          if (rotateObj.maxIndex === 1) {
+            this.rotateDirection[2] = -this.rotateDirection[2]
+          }
         }
         if (rotateObj.midIndex === 1) {
           this.rotateDirection[2] = rotateObj.symbol * (startList[rotateObj.maxIndex] - 3) / 3
         }
         if (rotateObj.midIndex === 2) {
-            this.rotateDirection[2] = -rotateObj.symbol * (startList[rotateObj.maxIndex] - 3) / 3
+          this.rotateDirection[2] = -rotateObj.symbol * (startList[rotateObj.maxIndex] - 3) / 3
         }
       }
 
@@ -1898,11 +1945,19 @@
             })
 
             // console.log('this.colorMap===>', this.colorMap);
-           if (this.validateSuccees()) {
-             alert('congratulation!!!')
-              // console.log('恭喜你===>', '恭喜你');
-           }
-            
+            if (this.validateSuccees()) {
+
+              const message = document.querySelector('.el-message')
+              message.style.opacity = '1'
+              message.style.transform = 'translateX(-50%) translateY(0px)'
+
+              let timer = setTimeout(() => {
+                message.style.opacity = '0'
+                message.style.transform = 'translateX(-50%) translateY(-40px)'
+                clearTimeout(timer)
+              }, 2000)
+            }
+
 
             // 清空 还原
             this.rotateDirection[0] = 0
@@ -1914,13 +1969,13 @@
 
           }, 300)
         } catch (err) {
-            // 清空 还原
-            this.rotateDirection[0] = 0
-            this.rotateDirection[1] = 0
-            this.rotateDirection[2] = 0
+          // 清空 还原
+          this.rotateDirection[0] = 0
+          this.rotateDirection[1] = 0
+          this.rotateDirection[2] = 0
 
-            this.startTarchDom = null
-            this.endTarchDom = null
+          this.startTarchDom = null
+          this.endTarchDom = null
           console.log(err);
         }
       }
@@ -1970,77 +2025,77 @@
 
       initColorMap(i, j, k, m, block, girdDom, level) {
 
-          const currColorClass = girdDom.classList[1]
-          this.colorPosition[3] = currColorClass
+        const currColorClass = girdDom.classList[1]
+        this.colorPosition[3] = currColorClass
 
 
-          this.colorPosition[2] = [5, 3, 1][j]
-          if (m === 5) {
-            this.colorPosition[2] += 1
-          }
-          if (m === 4) {
-            this.colorPosition[2] -= 1
-          }
+        this.colorPosition[2] = [5, 3, 1][j]
+        if (m === 5) {
+          this.colorPosition[2] += 1
+        }
+        if (m === 4) {
+          this.colorPosition[2] -= 1
+        }
 
-          if (m === 0) {
-            this.colorPosition[0] = (block.offsetLeft - 0) / 40
-            this.colorPosition[1] = (block.offsetTop - 0 + 40) / 40
-          }
-          if (m === 1) {
-            this.colorPosition[0] = (block.offsetLeft - 0 + 40) / 40
-            this.colorPosition[1] = (block.offsetTop - 0 + 80) / 40
-          }
-          if (m === 2) {
-            this.colorPosition[0] = (block.offsetLeft - 0 + 80) / 40
-            this.colorPosition[1] = (block.offsetTop - 0 + 40) / 40
-          }
-          if (m === 3) {
-            this.colorPosition[0] = (block.offsetLeft - 0 + 40) / 40
-            this.colorPosition[1] = (block.offsetTop - 0) / 40
-          }
-          if (m === 4 || m === 5) {
-            this.colorPosition[0] = (block.offsetLeft - 0 + 40) / 40
-            this.colorPosition[1] = (block.offsetTop - 0 + 40) / 40
-          }
+        if (m === 0) {
+          this.colorPosition[0] = (block.offsetLeft - 0) / 40
+          this.colorPosition[1] = (block.offsetTop - 0 + 40) / 40
+        }
+        if (m === 1) {
+          this.colorPosition[0] = (block.offsetLeft - 0 + 40) / 40
+          this.colorPosition[1] = (block.offsetTop - 0 + 80) / 40
+        }
+        if (m === 2) {
+          this.colorPosition[0] = (block.offsetLeft - 0 + 80) / 40
+          this.colorPosition[1] = (block.offsetTop - 0 + 40) / 40
+        }
+        if (m === 3) {
+          this.colorPosition[0] = (block.offsetLeft - 0 + 40) / 40
+          this.colorPosition[1] = (block.offsetTop - 0) / 40
+        }
+        if (m === 4 || m === 5) {
+          this.colorPosition[0] = (block.offsetLeft - 0 + 40) / 40
+          this.colorPosition[1] = (block.offsetTop - 0 + 40) / 40
+        }
 
-          // x: 1,3,4,5  0 2
-          // Y: 0,2,4,5  1, 3
+        // x: 1,3,4,5  0 2
+        // Y: 0,2,4,5  1, 3
 
 
-          const originRotateZ = this.getTransformInfo(level)[1] % 360
+        const originRotateZ = this.getTransformInfo(level)[1] % 360
 
-          if (originRotateZ === 90 || originRotateZ === -270) {
-            this.colorPosition = [6 - this.colorPosition[1], this.colorPosition[0], this.colorPosition[2], this.colorPosition[3], this.colorPosition[4]]
-          }
-          if (originRotateZ === 180 || originRotateZ === -180) {
-            this.colorPosition = [6 - this.colorPosition[0], 6 - this.colorPosition[1], this.colorPosition[2], this.colorPosition[3], this.colorPosition[4]]
-          }
-          if (originRotateZ === 270 || originRotateZ === -90) {
-            this.colorPosition = [this.colorPosition[1], 6 - this.colorPosition[0], this.colorPosition[2], this.colorPosition[3], this.colorPosition[4]]
-          }
-          // girdDom.innerText = `${this.colorPosition[3]}`
-          // girdDom.innerText = `${this.colorPosition[0]},${this.colorPosition[1]},${this.colorPosition[2]}`
+        if (originRotateZ === 90 || originRotateZ === -270) {
+          this.colorPosition = [6 - this.colorPosition[1], this.colorPosition[0], this.colorPosition[2], this.colorPosition[3], this.colorPosition[4]]
+        }
+        if (originRotateZ === 180 || originRotateZ === -180) {
+          this.colorPosition = [6 - this.colorPosition[0], 6 - this.colorPosition[1], this.colorPosition[2], this.colorPosition[3], this.colorPosition[4]]
+        }
+        if (originRotateZ === 270 || originRotateZ === -90) {
+          this.colorPosition = [this.colorPosition[1], 6 - this.colorPosition[0], this.colorPosition[2], this.colorPosition[3], this.colorPosition[4]]
+        }
+        // girdDom.innerText = `${this.colorPosition[3]}`
+        // girdDom.innerText = `${this.colorPosition[0]},${this.colorPosition[1]},${this.colorPosition[2]}`
 
-          // this.colorPosition[4] = girdDom.innerText
-          // console.log('this.colorPosition===>', this.colorPosition);
+        // this.colorPosition[4] = girdDom.innerText
+        // console.log('this.colorPosition===>', this.colorPosition);
 
-          if (i === 1) {
-            this.colorPosition = [6-this.colorPosition[2], this.colorPosition[0], 6-this.colorPosition[1], this.colorPosition[3], this.colorPosition[4]]
-          }
-          if (i === 2) {
-            this.colorPosition =  [this.colorPosition[0], this.colorPosition[2], 6-this.colorPosition[1], this.colorPosition[3], this.colorPosition[4]]
-          }
+        if (i === 1) {
+          this.colorPosition = [6 - this.colorPosition[2], this.colorPosition[0], 6 - this.colorPosition[1], this.colorPosition[3], this.colorPosition[4]]
+        }
+        if (i === 2) {
+          this.colorPosition = [this.colorPosition[0], this.colorPosition[2], 6 - this.colorPosition[1], this.colorPosition[3], this.colorPosition[4]]
+        }
 
-          const X = this.colorPosition[0]
-          const Y = this.colorPosition[1]
-          const Z = this.colorPosition[2]
+        const X = this.colorPosition[0]
+        const Y = this.colorPosition[1]
+        const Z = this.colorPosition[2]
 
-          girdDom.dataset.Y = Y
-          girdDom.dataset.X = X
-          girdDom.dataset.Z = Z
+        girdDom.dataset.Y = Y
+        girdDom.dataset.X = X
+        girdDom.dataset.Z = Z
 
-          this.colorMap[X][Y][Z] = currColorClass
-          // console.log('this.colorMap===>', this.colorMap);
+        this.colorMap[X][Y][Z] = currColorClass
+        // console.log('this.colorMap===>', this.colorMap);
       }
 
       // 记录第 i 个立方体的颜色
@@ -2075,28 +2130,28 @@
       // 设置第几个魔方的颜色
       setCubeColorByColorSet(i = 0) {
         try {
-            const firstList = this.baseList
-            const secondList = firstList[i].children
+          const firstList = this.baseList
+          const secondList = firstList[i].children
 
-            for (let j = 0, slen = secondList.length; j < slen; j++) { // 一个立方体由三个Side组成 j===level
+          for (let j = 0, slen = secondList.length; j < slen; j++) { // 一个立方体由三个Side组成 j===level
 
-              const level = secondList[j]
+            const level = secondList[j]
 
-              for (let k = 0, klen = level['children'].length; k < klen; k++) { // 9个block
+            for (let k = 0, klen = level['children'].length; k < klen; k++) { // 9个block
 
-                const block = secondList[j]['children'][k]
+              const block = secondList[j]['children'][k]
 
-                for (let m = 0, flen = block['children'].length; m < flen; m++) { // 6个方格grid
+              for (let m = 0, flen = block['children'].length; m < flen; m++) { // 6个方格grid
 
-                  const girdDom = block['children'][m]
-                  const { X, Y, Z } = girdDom.dataset
+                const girdDom = block['children'][m]
+                const { X, Y, Z } = girdDom.dataset
 
-                  if (girdDom.classList[1]) {
-                    girdDom.classList.replace(girdDom.classList[1], this.colorMap[X][Y][Z])
-                  }
+                if (girdDom.classList[1]) {
+                  girdDom.classList.replace(girdDom.classList[1], this.colorMap[X][Y][Z])
                 }
               }
             }
+          }
           // console.log('colorSet===>', this.colorSet);
         } catch (err) {
           console.log(err);
@@ -2104,9 +2159,9 @@
       }
 
       getTransformInfo(node) {
-          return node.style.transform.match(/-?\d+(\.\d+)?/g)
+        return node.style.transform.match(/-?\d+(\.\d+)?/g)
       }
-    
+
 
       validateSuccees() {
         const leftList = []
@@ -2128,17 +2183,17 @@
 
         temp.forEach(item => {
           temp.forEach(ktem => {
-              topList.push(this.colorMap[item][ktem]['0'])
-              botList.push(this.colorMap[item][ktem]['6'])
+            topList.push(this['colorMap'][item][ktem]['0'])
+            botList.push(this['colorMap'][item][ktem]['6'])
           })
         })
 
         temp.forEach(item => {
-            frontList.push(...Object.values(this.colorMap[item]['0']))
+          frontList.push(...Object.values(this['colorMap'][item]['0']))
         })
 
         temp.forEach(item => {
-            backList.push(...Object.values(this.colorMap[item]['6']))
+          backList.push(...Object.values(this['colorMap'][item]['6']))
         })
 
         if (leftList.some(item => item !== leftList[0])) return false
@@ -2149,7 +2204,7 @@
         if (backList.some(item => item !== backList[0])) return false
 
         return true
-      } 
+      }
     }
 
     const base = new Base(document.getElementById('base'))
