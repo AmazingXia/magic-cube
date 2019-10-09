@@ -316,7 +316,7 @@
 <body>
   <div class="base" id="base" style="transform: rotateX(-45deg) rotateY(33deg);">
     <div class="base-base base-public">
-      <div class="left">
+      <div class="left" style="transform: translateZ(80px) rotateZ(0deg)">
         <div class="cube cube-first cube-first-first">
           <div class="public gray">
           </div>
@@ -445,7 +445,7 @@
         </div>
       </div>
 
-      <div class="center">
+      <div class="center" style="transform: translateZ(0px) rotateZ(0deg)">
         <div class="cube cube-second cube-second-first">
           <div class="public gray">
           </div>
@@ -574,7 +574,7 @@
         </div>
       </div>
 
-      <div class="right">
+      <div class="right" style="transform: translateZ(-80px) rotateZ(0deg)">
         <div class="cube cube-third cube-third-first">
           <div class="public gray">
           </div>
@@ -706,7 +706,7 @@
 
     <div class="base-side base-public">
 
-      <div class="left">
+      <div class="left" style="transform: translateZ(80px) rotateZ(0deg)">
         <div class="cube cube-first cube-first-first">
           <div class="public gray">
           </div>
@@ -834,7 +834,7 @@
           </div>
         </div>
       </div>
-      <div class="center">
+      <div class="center" style="transform: translateZ(0px) rotateZ(0deg)">
         <div class="cube cube-second cube-second-first">
           <div class="public gray">
           </div>
@@ -963,7 +963,7 @@
         </div>
       </div>
 
-      <div class="right">
+      <div class="right" style="transform: translateZ(-80px) rotateZ(0deg)">
         <div class="cube cube-third cube-third-first">
           <div class="public gray">
           </div>
@@ -1095,7 +1095,7 @@
 
     <div class="base-front base-public">
 
-      <div class="left">
+      <div class="left" style="transform: translateZ(80px) rotateZ(0deg)">
         <div class="cube cube-first cube-first-first">
           <div class="public gray">
           </div>
@@ -1224,7 +1224,7 @@
         </div>
       </div>
 
-      <div class="center">
+      <div class="center" style="transform: translateZ(0px) rotateZ(0deg)">
         <div class="cube cube-second cube-second-first">
           <div class="public gray">
           </div>
@@ -1353,7 +1353,7 @@
         </div>
       </div>
 
-      <div class="right">
+      <div class="right" style="transform: translateZ(-80px) rotateZ(0deg)">
         <div class="cube cube-third cube-third-first">
           <div class="public gray">
           </div>
@@ -1490,6 +1490,9 @@
     <p class="el-message__content">congratulation!!!</p>
   </div>
   <script>
+    document.addEventListener("touchmove",(e) => {
+      e.preventDefault();
+    }, false);
 
     class Base {
       constructor(baseNode) {
@@ -1510,9 +1513,8 @@
       }
 
       init() {
-        document.addEventListener("touchmove",(e) => {
-          e.preventDefault();
-        },false);//禁止页面滑动
+
+        //禁止页面滑动
         history.pushState(null, null, document.URL);
         window.addEventListener('popstate', function () {
             history.pushState(null, null, document.URL);
@@ -1544,7 +1546,7 @@
 
               const level = secondList[j]
 
-              level.style.transform = `translateZ(${80 * (1 - j)}px) rotateZ(0deg)`
+              // level.style.transform = `translateZ(${80 * (1 - j)}px) rotateZ(0deg)`
 
               for (let k = 0, klen = secondList[j]['children'].length; k < klen; k++) { // 9个block
 
