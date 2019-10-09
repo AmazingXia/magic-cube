@@ -1,0 +1,2087 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>magic-cube</title>
+  <link rel="icon" href="https://avatars2.githubusercontent.com/u/47840241?s=460&v=4" type="images/x-ico" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      overflow: hidden;
+      height: 100%;
+    }
+
+    ul {}
+
+    li {
+      list-style: none;
+    }
+
+    /* { front: { backGround: rgba(0,255,255,.5) },
+     back: { backGround: rgba(153,204,255,.5) },
+     left: { backGround: rgba(128,0,128,.5) },
+     right: { backGround: rgba(255,0,255,.5) },
+     top: { backGround: rgba(255,153,204,.5) },
+     bottom: { backGround: rgba(0,204,255,.5) },
+      inner: { backGround: rgba(100,100,100,.5) } } */
+    .gray {
+
+      background-color: rgb(90, 85, 94);
+      /* backGround: rgba(0,255,255,.8); */
+    }
+
+    .blue {
+      background-color: rgb(62, 132, 224);
+      /* backGround: rgba(255,0,255,.8); */
+    }
+
+    .red {
+
+      background-color: #F7685B;
+      /* backGround: rgba(153,204,255,.8); */
+    }
+
+    .pink {
+      background-color: rgb(245, 142, 202);
+      /* backGround: rgba(255, 153, 204, .8); */
+    }
+
+    .green {
+      background-color: #67C23A;
+      /* backGround: rgba(0,204,255,.8); */
+    }
+
+    .yellow {
+      background-color: #FFB946;
+      /* backGround: rgba(100,100,100,.8); */
+    }
+
+    .base {
+      position: relative;
+      height: 242px;
+      width: 242px;
+      margin: auto;
+      margin-top: 200px;
+      transform-style: preserve-3d;
+      user-select: none;
+    }
+
+    .base-base {
+      /* background-color: #F7685B; */
+
+      transform: rotate3d(1, 0, 0, 90deg);
+    }
+
+    .base-side {
+      /* background-color: #67C23A; */
+      transform: rotate3d(0, 1, 0, -90deg) translateY(550px);
+      transform: rotate3d(0, 1, 0, -90deg);
+    }
+
+    .base-front {
+      /* background-color: #FFB946; */
+      /* transform: translateX(400px); */
+    }
+
+    .base-public {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 240px;
+      box-sizing: border-box;
+      transform-style: preserve-3d;
+      transition: transform 1s linear;
+    }
+
+    .cube {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80px;
+      height: 80px;
+      box-sizing: border-box;
+      transform-style: preserve-3d;
+    }
+
+    .public {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      text-align: center;
+      line-height: 80px;
+      font-size: 24px;
+      border: 4px solid #000000;
+      border-radius: 6px;
+      box-sizing: border-box;
+      text-align: center;
+      line-height: 80px;
+      user-select: none;
+    }
+
+
+
+    .left {
+      transform: translate3d(0px, 0px, 80px);
+      transform-style: preserve-3d;
+      transform-origin: 120px 120px -120px;
+      transition: transform 0.3s linear;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .center {
+      transform: translate3d(0px, 0px, 0px);
+      transform-style: preserve-3d;
+      transform-origin: 120px 120px 0px;
+      transition: transform 0.3s linear;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+
+    }
+
+    .right {
+      transform: translate3d(0px, 0px, -80px);
+      transform-style: preserve-3d;
+      transform-origin: 120px 120px 120px;
+      transition: transform 0.3s linear;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+
+    }
+
+
+
+    /* .cube-first {
+              transform: translate3d(0px, 0px, 120px);
+          }
+          .cube-second {
+              transform: translate3d(0px, 0px, 40px);
+          }
+          .cube-third {
+              transform: translate3d(0px, 0px, -40px);
+          } */
+    .cube-first-first,
+    .cube-second-first,
+    .cube-third-first {
+      left: 0px;
+      top: 0px;
+    }
+
+    .cube-first-second,
+    .cube-second-second,
+    .cube-third-second {
+      left: 80px;
+    }
+
+    .cube-first-third,
+    .cube-second-third,
+    .cube-third-third {
+      left: 160px;
+    }
+
+    .cube-first-forth,
+    .cube-second-forth,
+    .cube-third-forth {
+      left: 0px;
+      top: 80px;
+    }
+
+    .cube-first-five,
+    .cube-second-five,
+    .cube-third-five {
+      left: 80px;
+      top: 80px;
+    }
+
+    .cube-first-six,
+    .cube-second-six,
+    .cube-third-six {
+      left: 160px;
+      top: 80px;
+    }
+
+    .cube-first-seven,
+    .cube-second-seven,
+    .cube-third-seven {
+      left: 0px;
+      top: 160px;
+    }
+
+    .cube-first-eight,
+    .cube-second-eight,
+    .cube-third-eight {
+      left: 80px;
+      top: 160px;
+    }
+
+    .cube-first-nine,
+    .cube-second-nine,
+    .cube-third-nine {
+      left: 160px;
+      top: 160px;
+    }
+
+    .cube .public:nth-child(1) {
+      transform-origin: 0px 40px;
+      transform: translate3d(0px, 0px, 40px) rotate3d(0, 1, 0, 90deg);
+    }
+
+    .cube .public:nth-child(2) {
+      transform-origin: 40px 40px;
+      transform: rotate3d(1, 0, 0, 90deg) translate3d(0px, 0px, -40px);
+    }
+
+    .cube .public:nth-child(3) {
+      transform-origin: 40px 0px;
+      transform: rotate3d(0, 1, 0, 90deg) translate3d(0px, 0px, 40px);
+    }
+
+    .cube .public:nth-child(4) {
+      transform-origin: 40px 40px;
+      transform: rotate3d(1, 0, 0, 90deg) translate3d(0px, 0px, 40px);
+    }
+
+    .cube .public:nth-child(5) {
+      transform: translate3d(0px, 0px, -40px);
+    }
+
+    .cube .public:nth-child(6) {
+      transform: translate3d(0px, 0px, 40px);
+    }
+
+    .el-message {
+        min-width: 380px;
+        box-sizing: border-box;
+        border: 1px solid #ebeef5;
+        position: fixed;
+        left: 50%;
+        top: 20px;
+        opacity: 0;
+        transform: translateX(-50%) translateY(-40px);
+        transition: opacity .3s,-webkit-transform .4s;
+        transition: opacity .3s,transform .4s;
+        transition: opacity .3s,transform .4s,-webkit-transform .4s;
+        padding: 5px 15px 5px 15px;
+        display: flex;
+        align-items: center;
+        border-radius: 4px;
+        overflow: hidden;
+        background-color: #f0f9eb;
+        border-color: #e1f3d8;
+    }
+
+    .el-message--success .el-message__content {
+      color: #67c23a;
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      line-height: 1;
+    }
+    .success {
+      width: 38px;
+      height: 38px;
+      margin: 0;
+      padding: 0;
+      vertical-align: middle;
+    }
+
+    p {
+      display: block;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="base" id="base" style="transform: rotateX(-45deg) rotateY(33deg);">
+    <div class="base-base base-public">
+      <div class="left">
+        <div class="cube cube-first cube-first-first">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-second">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-third">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-forth">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-five">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-six">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-seven">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-eight">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-nine">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+      </div>
+
+      <div class="center">
+        <div class="cube cube-second cube-second-first">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-second">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-third">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-forth">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-five">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-six">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-seven">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-eight">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-nine">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="cube cube-third cube-third-first">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-second">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-third">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-forth">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-five">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-six">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-seven">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-eight">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-nine">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="base-side base-public">
+
+      <div class="left">
+        <div class="cube cube-first cube-first-first">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-second">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-third">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-forth">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-five">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-six">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-seven">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-eight">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-nine">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+      </div>
+      <div class="center">
+        <div class="cube cube-second cube-second-first">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-second">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-third">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-forth">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-five">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-six">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-seven">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-eight">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-nine">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="cube cube-third cube-third-first">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-second">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-third">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-forth">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-five">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-six">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-seven">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-eight">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-nine">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="base-front base-public">
+
+      <div class="left">
+        <div class="cube cube-first cube-first-first">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-second">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-third">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-forth">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-five">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-six">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-seven">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-eight">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-nine">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+      </div>
+
+      <div class="center">
+        <div class="cube cube-second cube-second-first">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-second">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-third">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-forth">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-five">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-six">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-seven">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-eight">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-nine">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="cube cube-third cube-third-first">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-second">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-third">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-forth">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-five">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-six">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-seven">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-eight">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-nine">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="el-message el-message--success" style="z-index: 2002;">
+    <img src="./img/succees.png" alt="" class="success">
+    <p class="el-message__content">congratulation!!!</p>
+  </div>
+  <script>
+
+    class Base {
+      constructor(baseNode) {
+        this.baseNode = baseNode
+
+        this.baseList = this.baseNode.children
+        this.levelList = this.baseList[0]['children']
+        this.firstBase = this.baseNode.firstElementChild
+
+        this.dragDirection = ''
+        this.endTarchDom = null
+        this.startTarchDom = null
+        this.rotateDirection = [0, 0, 0]
+
+        this.colorPosition = [null, null, null, null, null]
+
+        this.colorMap = {}
+      }
+
+      init() {
+        this.bindRotate()
+        this.setColorSet()
+
+        this.setCubeColorByColorSet(0)
+        this.setCubeColorByColorSet(1)
+      }
+
+      setColorSet() {
+        try {
+          const firstList = this.baseList
+
+          let index = 1;
+
+          for (let i = 0, len = firstList.length; i < len; i++) { // 3个立方体base
+
+            const secondList = firstList[i].children
+
+            if (i !== 0) {
+              firstList[i].style.visibility = 'hidden'
+              firstList[i].style.overflow = 'hidden'
+            }
+
+            for (let j = 0, slen = secondList.length; j < slen; j++) { // 一个立方体由三个Side组成 j===level
+
+              const level = secondList[j]
+
+              level.style.transform = `translateZ(${80 * (1 - j)}px) rotateZ(0deg)`
+
+              for (let k = 0, klen = secondList[j]['children'].length; k < klen; k++) { // 9个block
+
+                const block = secondList[j]['children'][k]
+
+                for (let m = 0, flen = block['children'].length; m < flen; m++) { // 6个方格grid
+
+                  const girdDom = block['children'][m]
+
+                  this.initColorMap(i, j, k, m, block, girdDom, level)
+
+                  if (i === 0) {
+
+                    const touchstart = function (e) { 
+                      this.startTarchDom = e.target
+                      // console.log('this.startTarchDom===>', this.startTarchDom);
+                      // console.dir(this.startTarchDom)
+                      // console.log('e===>', e);
+                    }
+
+
+                    girdDom.addEventListener('touchstart', (e) => {
+                      e.preventDefault()
+                      this.startTarchDom = e.target
+                    }, false)
+
+                    const that = this
+
+                    girdDom.addEventListener('touchend', function (e) {
+
+                      if (that.startTarchDom === null) return
+
+                      that.endTarchDom = document.elementFromPoint(event.changedTouches[0].pageX, event.changedTouches[0].pageY)
+                      that.calcRotateMethod()
+                      that.surfaceRotation()
+                      that.dragDirection = ''
+                    }, false)
+
+                    // girdDom.classList.add('red')
+                  }
+                }
+              }
+            }
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      // 计算那个魔方那个层绕Z轴旋转90度
+      calcRotateMethod() {
+        // startTarchDom 起始点, endTarchDom 结束点
+        // direction 方向
+        if (this.startTarchDom === null || this.endTarchDom === null) return
+
+
+        // console.log('this.startTarchDom===>', this.startTarchDom)
+        // console.log('this.endTarchDom===>', this.endTarchDom)
+
+        try {
+          const { X: x1, Y: y1, Z: z1 } = this.startTarchDom.dataset
+          const { X: x2, Y: y2, Z: z2 } = this.endTarchDom.dataset
+
+          console.log('x1,y1,z1===>', x1, y1, z1)
+          console.log('x2,y2,z2===>', x2, y2, z2)
+
+          // const startToOrigin = Math.sqrt(x1^2 + y1^2 + z1^2)
+          // const endToOrigin = Math.sqrt(x2^2 + y2^2 + z2^2)
+
+          const startList = [x1, y1, z1]
+          const endList = [x2, y2, z2]
+          let index = -1
+
+          startList.forEach((start, startIndex) => {
+            endList.forEach((end, endIndex) => {
+              if ((end - start === 4 || end - start === -4) && startIndex === endIndex) {
+                // console.log('相差为4=================',start,end,startIndex,endIndex)
+                index = startIndex
+              }
+            })
+          })
+
+          console.log('index===>', index);
+
+          let flag = 0
+          startList.forEach((start, startIndex) => {
+            endList.forEach((end, endIndex) => {
+              if (index != -1 && startIndex != index) {
+                if (startIndex === endIndex && end === start) {
+                  flag += 1
+                  // console.log('相等',start,end,startIndex,endIndex,'++++++++++++++++',flag)
+                }
+              }
+            })
+          })
+
+          if (flag != 2) {
+            // console.log('不满足条件')
+            return
+          }
+
+          const distance = [x2 - x1, y2 - y1, z2 - z1]
+
+          if (distance.every(item => Math.abs(item) !== 4)) {
+            this.startTarchDom = null
+            this.endTarchDom = null
+            return
+          };
+          if (distance.every(item => Math.abs(item) === 0)) {
+            this.startTarchDom = null
+            this.endTarchDom = null
+            return
+          };
+
+          // console.log('x1,y1,z1===>', x1, y1, z1)
+          // console.log('x2,y2,z2===>', x2, y2, z2)
+          // console.log('distance===>', distance);
+
+
+          const coord = distance.map((item, index) => { // [x1, -4, z1]
+            if (item === 0) {
+              return startList[index]
+            } else {
+              return item
+            }
+          })
+          // console.log('coord===>', coord);
+
+          const len = coord.map(item => { // 中心坐标为(3,3,3)
+            if (Math.abs(item) !== 4) {
+              return item - 3
+            } else {
+              return item
+            }
+          })
+          // console.log('len===>', len);
+          // len = [距离, -4, 距离]
+
+          let maxItem = 0
+          let minItem = 4
+
+          const rotateObj = {
+            maxIndex: '',
+            minIndex: '',
+            midIndex: '',
+            symbol: 0,
+            axis: ''
+          }
+
+          len.forEach((item, index) => {
+            if (Math.abs(item) !== 4) {
+
+              if (maxItem < Math.abs(item)) {
+                maxItem = Math.abs(item)
+                rotateObj.maxIndex = index
+              }
+              if (minItem > Math.abs(item)) {
+                minItem = Math.abs(item)
+                rotateObj.minIndex = index
+              }
+            } else {
+              rotateObj.symbol = item / 4
+            }
+          })
+
+          rotateObj.midIndex = 3 - rotateObj.minIndex - rotateObj.maxIndex
+          // console.log('rotateObj===>', rotateObj);
+
+          const temp = {
+            'x': 1, // x = 0平面 旋转对应的魔方序号
+            'y': 2, // x = 0平面
+            'z': 0  // z = 0平面
+          }
+
+          this.rotateDirection[0] = temp[['x', 'y', 'z'][rotateObj.minIndex]]
+
+          if (this.rotateDirection[0] === 0 || this.rotateDirection[0] === 2) {
+            this.rotateDirection[1] = (5 - startList[rotateObj.minIndex]) / 2
+          }
+          if (this.rotateDirection[0] === 1) {
+            this.rotateDirection[1] = (startList[rotateObj.minIndex] - 1) / 2
+          }
+
+          if (rotateObj.midIndex === 0) {
+            this.rotateDirection[2] = rotateObj.symbol * (startList[rotateObj.maxIndex] - 3) / 3
+            if (rotateObj.maxIndex === 1) {
+              this.rotateDirection[2] = -this.rotateDirection[2]
+            }
+          }
+          if (rotateObj.midIndex === 1) {
+            this.rotateDirection[2] = rotateObj.symbol * (startList[rotateObj.maxIndex] - 3) / 3
+          }
+          if (rotateObj.midIndex === 2) {
+            this.rotateDirection[2] = -rotateObj.symbol * (startList[rotateObj.maxIndex] - 3) / 3
+          }
+
+        } catch (err) {
+          console.log('err===>', err);
+        }
+      }
+
+      // 执行旋转动作
+      surfaceRotation() {
+        // console.log('this.rotateDirection==>', this.rotateDirection)
+        if (this.rotateDirection.every(item => item === 0)) return
+
+        try {
+          for (let i = 0; i < this.baseList.length; i++) {
+            if (i === this.rotateDirection[0]) {
+              this.baseList[i].style.visibility = 'visible'
+              this.baseList[i].style.overflow = 'visible'
+              this['baseList'][this.rotateDirection[0]]['children'][this['rotateDirection'][1]]['style']['transition'] = `transform 0.3s`
+            } else {
+              this.baseList[i].style.visibility = 'hidden'
+              this.baseList[i].style.overflow = 'hidden'
+            }
+          }
+
+          const node = this['baseList'][this.rotateDirection[0]]['children'][this['rotateDirection'][1]]
+
+          const translateZ = this.getTransformInfo(node)[0] - 0
+          const rotateZ = this.getTransformInfo(node)[1] - 0
+
+          this['baseList'][this.rotateDirection[0]]['children'][this['rotateDirection'][1]]['style']['transform'] =
+            `translateZ(${translateZ}px) rotateZ(${rotateZ + this.rotateDirection[2] * 90}deg)`
+
+          setTimeout(() => {
+
+            this.calcColorMap(this.rotateDirection[0])
+
+            for (let i = 0; i < this.baseList.length; i++) {
+              if (i !== this.rotateDirection[0]) {
+                this.setCubeColorByColorSet(i)
+              }
+            }
+
+            [...this.baseList].forEach((item, index) => {
+              item.style.visibility = ['visible', 'hidden', 'hidden'][index]
+              item.style.overflow = ['visible', 'hidden', 'hidden'][index]
+            })
+
+            // console.log('this.colorMap===>', this.colorMap);
+            if (this.validateSuccees()) {
+
+              const message = document.querySelector('.el-message')
+              message.style.opacity = '1'
+              message.style.transform = 'translateX(-50%) translateY(0px)'
+
+              let timer = setTimeout(() => {
+                message.style.opacity = '0'
+                message.style.transform = 'translateX(-50%) translateY(-40px)'
+                clearTimeout(timer)
+              }, 2000)
+            }
+
+
+            // 清空 还原
+            this.rotateDirection[0] = 0
+            this.rotateDirection[1] = 0
+            this.rotateDirection[2] = 0
+
+            this.startTarchDom = null
+            this.endTarchDom = null
+
+          }, 300)
+        } catch (err) {
+          // 清空 还原
+          this.rotateDirection[0] = 0
+          this.rotateDirection[1] = 0
+          this.rotateDirection[2] = 0
+
+          this.startTarchDom = null
+          this.endTarchDom = null
+          console.log(err);
+        }
+      }
+
+      bindRotate() {
+        document.ontouchstart = (e) => {
+          if (e.target.toString().toLowerCase().includes('div')) return
+          const originX = e['touches'][0].pageX;
+          const originY = e['touches'][0].pageY;
+          if (this.baseNode.style.transform === '') {
+            this.baseNode.style.transform = 'rotateX(45deg) rotateY(45deg)'
+          }
+
+          const originRotateX = this.getTransformInfo(this.baseNode)[0]
+          const originRotateY = this.getTransformInfo(this.baseNode)[1]
+
+          document.ontouchmove = (ev) => {
+            const freshPageX = ev.touches[0].pageX
+            const freshPageY = ev.touches[0].pageY
+
+            let userRotateX, userRotateY
+
+            // this.getTransformInfo(this.baseNode)[0] || 45
+
+
+            const directionX = this.getTransformInfo(this.baseNode)[0] || 45
+
+            // console.log('方向===>', directionX);
+            if ((90 > directionX && directionX > -90) || (-270 < directionX && directionX < -180) || (270 <
+              directionX && directionX < 360)) {
+              userRotateX = (-freshPageX + originX) / 500 * 360
+            } else {
+              userRotateX = (freshPageX - originX) / 500 * 360
+            }
+            userRotateY = (freshPageY - originY) / 500 * 360
+
+            const X = ((originRotateX) - (userRotateY) - 0) % 360
+            const Y = ((originRotateY) - (userRotateX) - 0) % 360
+
+            this.baseNode.style.transform = `rotateX(${X}deg) rotateY(${Y}deg)`;
+          }
+          document.ontouchend = () => {
+            document.ontouchmove = null
+          }
+        }
+
+        // 兼容电脑
+
+
+
+
+
+
+
+      }
+
+      initColorMap(i, j, k, m, block, girdDom, level) {
+
+        const currColorClass = girdDom.classList[1]
+        this.colorPosition[3] = currColorClass
+
+
+        this.colorPosition[2] = [5, 3, 1][j]
+        if (m === 5) {
+          this.colorPosition[2] += 1
+        }
+        if (m === 4) {
+          this.colorPosition[2] -= 1
+        }
+
+        if (m === 0) {
+          this.colorPosition[0] = (block.offsetLeft - 0) / 40
+          this.colorPosition[1] = (block.offsetTop - 0 + 40) / 40
+        }
+        if (m === 1) {
+          this.colorPosition[0] = (block.offsetLeft - 0 + 40) / 40
+          this.colorPosition[1] = (block.offsetTop - 0 + 80) / 40
+        }
+        if (m === 2) {
+          this.colorPosition[0] = (block.offsetLeft - 0 + 80) / 40
+          this.colorPosition[1] = (block.offsetTop - 0 + 40) / 40
+        }
+        if (m === 3) {
+          this.colorPosition[0] = (block.offsetLeft - 0 + 40) / 40
+          this.colorPosition[1] = (block.offsetTop - 0) / 40
+        }
+        if (m === 4 || m === 5) {
+          this.colorPosition[0] = (block.offsetLeft - 0 + 40) / 40
+          this.colorPosition[1] = (block.offsetTop - 0 + 40) / 40
+        }
+
+        // x: 1,3,4,5  0 2
+        // Y: 0,2,4,5  1, 3
+
+
+        const originRotateZ = this.getTransformInfo(level)[1] % 360
+
+        if (originRotateZ === 90 || originRotateZ === -270) {
+          this.colorPosition = [6 - this.colorPosition[1], this.colorPosition[0], this.colorPosition[2], this.colorPosition[3], this.colorPosition[4]]
+        }
+        if (originRotateZ === 180 || originRotateZ === -180) {
+          this.colorPosition = [6 - this.colorPosition[0], 6 - this.colorPosition[1], this.colorPosition[2], this.colorPosition[3], this.colorPosition[4]]
+        }
+        if (originRotateZ === 270 || originRotateZ === -90) {
+          this.colorPosition = [this.colorPosition[1], 6 - this.colorPosition[0], this.colorPosition[2], this.colorPosition[3], this.colorPosition[4]]
+        }
+        // girdDom.innerText = `${this.colorPosition[3]}`
+        // girdDom.innerText = `${this.colorPosition[0]},${this.colorPosition[1]},${this.colorPosition[2]}`
+
+        // this.colorPosition[4] = girdDom.innerText
+        // console.log('this.colorPosition===>', this.colorPosition);
+
+        if (i === 1) {
+          this.colorPosition = [6 - this.colorPosition[2], this.colorPosition[0], 6 - this.colorPosition[1], this.colorPosition[3], this.colorPosition[4]]
+        }
+        if (i === 2) {
+          this.colorPosition = [this.colorPosition[0], this.colorPosition[2], 6 - this.colorPosition[1], this.colorPosition[3], this.colorPosition[4]]
+        }
+
+        const X = this.colorPosition[0]
+        const Y = this.colorPosition[1]
+        const Z = this.colorPosition[2]
+
+        girdDom.dataset.Y = Y
+        girdDom.dataset.X = X
+        girdDom.dataset.Z = Z
+
+
+        try {
+          if (!this.colorMap[X]) {
+            this['colorMap'][X] = {}
+          }
+          if (!this['colorMap'][X][Y]) {
+            this['colorMap'][X][Y] = {}
+          }
+          if (!this.colorMap[X][Y][Z]) {
+            this['colorMap'][X][Y][Z] = ''
+          }
+
+          this.colorMap[X][Y][Z] = currColorClass
+        } catch (err) {
+        }
+      }
+
+      // 记录第 i 个立方体的颜色
+      calcColorMap(i = 0) {
+        try {
+          const firstList = this.baseList
+
+          const secondList = firstList[i].children
+
+          for (let j = 0, slen = secondList.length; j < slen; j++) { // 一个立方体由三个Side组成 j===level
+
+            const level = secondList[j]
+
+            for (let k = 0, klen = level['children'].length; k < klen; k++) { // 9个block
+
+              const block = secondList[j]['children'][k]
+
+              for (let m = 0, flen = block['children'].length; m < flen; m++) { // 6个方格grid
+
+                const girdDom = block['children'][m]
+
+                this.initColorMap(i, j, k, m, block, girdDom, level)
+              }
+            }
+          }
+          // console.log('colorSet===>', this.colorSet);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      // 设置第几个魔方的颜色
+      setCubeColorByColorSet(i = 0) {
+        try {
+          const firstList = this.baseList
+          const secondList = firstList[i].children
+
+          for (let j = 0, slen = secondList.length; j < slen; j++) { // 一个立方体由三个Side组成 j===level
+
+            const level = secondList[j]
+
+            for (let k = 0, klen = level['children'].length; k < klen; k++) { // 9个block
+
+              const block = secondList[j]['children'][k]
+
+              for (let m = 0, flen = block['children'].length; m < flen; m++) { // 6个方格grid
+
+                const girdDom = block['children'][m]
+                const { X, Y, Z } = girdDom.dataset
+
+                if (girdDom.classList[1]) {
+                  girdDom.classList.replace(girdDom.classList[1], this.colorMap[X][Y][Z])
+                }
+              }
+            }
+          }
+          // console.log('colorSet===>', this.colorSet);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      getTransformInfo(node) {
+        return node.style.transform.match(/-?\d+(\.\d+)?/g)
+      }
+
+      // 随机
+
+      random() {
+        Math.floor(Math.random() * 3 - 1)
+      }
+
+
+      validateSuccees() {
+        const leftList = []
+        const rightList = []
+        const topList = []
+        const botList = []
+        const frontList = []
+        const backList = []
+
+        Object.values(this.colorMap['0']).forEach(item => {
+          leftList.push(...Object.values(item))
+        })
+
+        Object.values(this.colorMap['6']).forEach(item => {
+          rightList.push(...Object.values(item))
+        })
+
+        const temp = ['1', '3', '5']
+
+        temp.forEach(item => {
+          frontList.push(...Object.values(this['colorMap'][item]['0']))
+          backList.push(...Object.values(this['colorMap'][item]['6']))
+
+          temp.forEach(ktem => {
+            topList.push(this['colorMap'][item][ktem]['0'])
+            botList.push(this['colorMap'][item][ktem]['6'])
+          })
+        })
+
+        if (leftList.some(item => item !== leftList[0])) return false
+        if (rightList.some(item => item !== rightList[0])) return false
+        if (topList.some(item => item !== topList[0])) return false
+        if (botList.some(item => item !== botList[0])) return false
+        if (frontList.some(item => item !== frontList[0])) return false
+        if (backList.some(item => item !== backList[0])) return false
+
+        return true
+      }
+    }
+
+    const base = new Base(document.getElementById('base'))
+    base.init()
+
+    // 每一个方块面叫grid
+
+    // 每一个方块体叫block
+
+    // 每一个侧边体叫side
+
+    // 一个魔方有三个侧边体组成
+
+    // 一共有三个魔方cube, 分别在绕着X轴 Y轴 Z旋转
+
+    // 只能有一个显示
+
+    // 事件加在grid 上面, 根据拖拽方向,  看由哪个魔方旋转实现动画
+  </script>
+
+</body>
+
+</html>

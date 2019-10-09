@@ -2182,18 +2182,13 @@
         const temp = ['1', '3', '5']
 
         temp.forEach(item => {
+          frontList.push(...Object.values(this['colorMap'][item]['0']))
+          backList.push(...Object.values(this['colorMap'][item]['6']))
+
           temp.forEach(ktem => {
             topList.push(this['colorMap'][item][ktem]['0'])
             botList.push(this['colorMap'][item][ktem]['6'])
           })
-        })
-
-        temp.forEach(item => {
-          frontList.push(...Object.values(this['colorMap'][item]['0']))
-        })
-
-        temp.forEach(item => {
-          backList.push(...Object.values(this['colorMap'][item]['6']))
         })
 
         if (leftList.some(item => item !== leftList[0])) return false
