@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>magic-cube</title>
   <link rel="icon" href="https://avatars2.githubusercontent.com/u/47840241?s=460&v=4" type="images/x-ico" />
@@ -1557,15 +1557,6 @@
                   this.initColorMap(i, j, k, m, block, girdDom, level)
 
                   if (i === 0) {
-
-                    const touchstart = function (e) { 
-                      this.startTarchDom = e.target
-                      // console.log('this.startTarchDom===>', this.startTarchDom);
-                      // console.dir(this.startTarchDom)
-                      // console.log('e===>', e);
-                    }
-
-
                     girdDom.addEventListener('touchstart', (e) => {
                       e.preventDefault()
                       this.startTarchDom = e.target
@@ -1574,7 +1565,7 @@
                     const that = this
 
                     girdDom.addEventListener('touchend', function (e) {
-
+                      e.preventDefault()
                       if (that.startTarchDom === null) return
 
                       that.endTarchDom = document.elementFromPoint(event.changedTouches[0].pageX, event.changedTouches[0].pageY)
@@ -1627,7 +1618,7 @@
             })
           })
 
-          console.log('index===>', index);
+          // console.log('index===>', index);
 
           let flag = 0
           startList.forEach((start, startIndex) => {
