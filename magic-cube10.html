@@ -1510,6 +1510,14 @@
       }
 
       init() {
+        document.addEventListener("touchmove",(e) => {
+          e.preventDefault();
+        },false);//禁止页面滑动
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+        });
+        
         this.bindRotate()
         this.setColorSet()
 
