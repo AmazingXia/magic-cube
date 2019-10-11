@@ -131,12 +131,12 @@
 
 
     .left {
-      transform: translate3d(0px, 0px, 80px);
+      width: 240px;
+      height: 240px;
+      /* transform: translate3d(0px, 0px, 80px); */
       transform-style: preserve-3d;
       transform-origin: 50% 50%;
       transition: transform 0.3s linear;
-      width: 100%;
-      height: 100%;
       position: absolute;
       left: 0;
       top: 0;      
@@ -146,12 +146,12 @@
     }
 
     .center {
+      width: 240px;
+      height: 240px;
       transform: translate3d(0px, 0px, 0px);
       transform-style: preserve-3d;
       transform-origin: 50% 50%;
       transition: transform 0.3s linear;
-      width: 100%;
-      height: 100%;
       position: absolute;
       left: 0;
       top: 0;
@@ -160,11 +160,11 @@
     }
 
     .right {
+      width: 240px;
+      height: 240px;
       transform-style: preserve-3d;
       transform-origin: 50% 50%;
       transition: transform 0.3s linear;
-      width: 100%;
-      height: 100%;
       position: absolute;
       left: 0;
       top: 0;
@@ -1570,7 +1570,7 @@
 
               const level = secondList[j]
 
-              level.style.transform = `translateZ(${33.33* (1 - j)}%) rotateZ(0deg)`
+              level.style.transform = `translateZ(${(1 - j)*80}px) rotateZ(0)`
 
               for (let k = 0, klen = secondList[j]['children'].length; k < klen; k++) { // 9个block
 
@@ -1787,7 +1787,7 @@
           const rotateZ = this.getTransformInfo(node)[1] - 0
 
           this['baseList'][this.rotateDirection[0]]['children'][this['rotateDirection'][1]]['style']['transform'] =
-            `translateZ(${translateZ}%) rotateZ(${rotateZ + this.rotateDirection[2] * 90}deg)`
+            `translateZ(${translateZ}px) rotateZ(${rotateZ + this.rotateDirection[2] * 90}deg)`
 
           setTimeout(() => {
 
@@ -2045,6 +2045,8 @@
       }
 
       getTransformInfo(node) {
+        console.dir(node)
+        console.log('node.style.transform.match(/-?\d+(\.\d+)?/g)===>', node.style.transform.match(/-?\d+(\.\d+)?/g));
         return node.style.transform.match(/-?\d+(\.\d+)?/g)
       }
 
