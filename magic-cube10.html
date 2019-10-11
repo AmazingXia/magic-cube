@@ -143,6 +143,8 @@
       background-color: rgb(62, 132, 224);
       overflow: hidden;
 
+      transform: translateZ(80px) rotateZ(0deg);
+
     }
 
     .center {
@@ -156,6 +158,7 @@
       left: 0;
       top: 0;
       background-color: rgb(90, 85, 94);
+      transform: translateZ(0px) rotateZ(0deg)
     }
 
     .right {
@@ -169,7 +172,7 @@
       left: 0;
       top: 0;
       background-color: #F7685B;
-
+      transform: translateZ(-80px) rotateZ(0deg)
     }
 
 
@@ -321,397 +324,7 @@
 <body>
   <div class="base" id="base" style="transform: rotateX(-45deg) rotateY(33deg);">
     <div class="base-base base-public">
-      <div class="left" style="transform: translateZ(80px) rotateZ(0deg)">
-        <!-- <div class="cube cube-first cube-first-first">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-first cube-first-second">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-first cube-first-third">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-first cube-first-forth">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-first cube-first-five">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-first cube-first-six">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-first cube-first-seven">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-first cube-first-eight">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-first cube-first-nine">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div> -->
-      </div>
-
-      <div class="center" style="transform: translateZ(0px) rotateZ(0deg)">
-        <div class="cube cube-second cube-second-first">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-second cube-second-second">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-second cube-second-third">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-second cube-second-forth">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-second cube-second-five">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-second cube-second-six">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-second cube-second-seven">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-second cube-second-eight">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-second cube-second-nine">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-      </div>
-
-      <div class="right" style="transform: translateZ(-80px) rotateZ(0deg)">
-        <div class="cube cube-third cube-third-first">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <!-- <div class="cube cube-third cube-third-second">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-third cube-third-third">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-third cube-third-forth">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-third cube-third-five">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-third cube-third-six">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-third cube-third-seven">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-third cube-third-eight">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div>
-        <div class="cube cube-third cube-third-nine">
-          <div class="public gray">
-          </div>
-          <div class="public blue">
-          </div>
-          <div class="public red">
-          </div>
-          <div class="public pink">
-          </div>
-          <div class="public green">
-          </div>
-          <div class="public yellow">
-          </div>
-        </div> -->
-      </div>
-    </div>
-
-    <div class="base-side base-public">
-
-      <div class="left" style="transform: translateZ(80px) rotateZ(0deg)">
+      <div class="left" >
         <div class="cube cube-first cube-first-first">
           <div class="public gray">
           </div>
@@ -839,7 +452,9 @@
           </div>
         </div>
       </div>
-      <div class="center" style="transform: translateZ(0px) rotateZ(0deg)">
+
+      <!-- <div class="center" style="transform: translateZ(0px) rotateZ(0deg)"> -->
+      <div class="center">
         <div class="cube cube-second cube-second-first">
           <div class="public gray">
           </div>
@@ -968,7 +583,400 @@
         </div>
       </div>
 
-      <div class="right" style="transform: translateZ(-80px) rotateZ(0deg)">
+      <!-- <div class="right" style="transform: translateZ(-80px) rotateZ(0deg)"> -->
+      <div class="right">
+        <div class="cube cube-third cube-third-first">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-second">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-third">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-forth">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-five">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-six">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-seven">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-eight">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-third cube-third-nine">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="base-side base-public">
+
+      <!-- <div class="left" style="transform: translateZ(80px) rotateZ(0deg)"> -->
+      <div class="left">
+        <div class="cube cube-first cube-first-first">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-second">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-third">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-forth">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-five">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-six">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-seven">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-eight">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-first cube-first-nine">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+      </div>
+      <!-- <div class="center" style="transform: translateZ(0px) rotateZ(0deg)"> -->
+      <div class="center">
+        <div class="cube cube-second cube-second-first">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-second">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-third">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-forth">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-five">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-six">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-seven">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-eight">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+        <div class="cube cube-second cube-second-nine">
+          <div class="public gray">
+          </div>
+          <div class="public blue">
+          </div>
+          <div class="public red">
+          </div>
+          <div class="public pink">
+          </div>
+          <div class="public green">
+          </div>
+          <div class="public yellow">
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="right" style="transform: translateZ(-80px) rotateZ(0deg)"> -->
+      <div class="right">
         <div class="cube cube-third cube-third-first">
           <div class="public gray">
           </div>
@@ -1100,7 +1108,8 @@
 
     <div class="base-front base-public">
 
-      <div class="left" style="transform: translateZ(80px) rotateZ(0deg)">
+      <!-- <div class="left" style="transform: translateZ(80px) rotateZ(0deg)"> -->
+      <div class="left">
         <div class="cube cube-first cube-first-first">
           <div class="public gray">
           </div>
@@ -1229,7 +1238,8 @@
         </div>
       </div>
 
-      <div class="center" style="transform: translateZ(0px) rotateZ(0deg)">
+      <!-- <div class="center" style="transform: translateZ(0px) rotateZ(0deg)"> -->
+      <div class="center">
         <div class="cube cube-second cube-second-first">
           <div class="public gray">
           </div>
@@ -1358,7 +1368,8 @@
         </div>
       </div>
 
-      <div class="right" style="transform: translateZ(-80px) rotateZ(0deg)">
+      <!-- <div class="right" style="transform: translateZ(-80px) rotateZ(0deg)"> -->
+      <div class="right">
         <div class="cube cube-third cube-third-first">
           <div class="public gray">
           </div>
