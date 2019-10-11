@@ -142,7 +142,6 @@
       top: 0;      
       background-color: rgb(90, 85, 94);
       background-color: rgb(62, 132, 224);
-      /* transform: translate3d(0px, 0px, 80px) rotate3d(0, 0, 0, 90deg); */
       transform: translateZ(33.33%) rotateZ(0deg);
     }
 
@@ -157,13 +156,10 @@
       left: 0;
       top: 0;
       background-color: rgb(90, 85, 94);
-      /* transform: translateZ(0px) rotateZ(0deg) */
-      /* transform: translate3d(0px, 0px, 0px) rotate3d(0, 0, 0, 90deg); */
       transform: translateZ(0) rotateZ(0deg);
     }
 
     .right {
-      /* transform: translate3d(0px, 0px, -80px); */
       transform-style: preserve-3d;
       transform-origin: 50% 50%;
       transition: transform 0.3s linear;
@@ -173,9 +169,7 @@
       left: 0;
       top: 0;
       background-color: #F7685B;
-      /* transform: translateZ(-80px) rotateZ(0deg); */
       transform: translateZ(-33.33%) rotateZ(0deg);
-      /* transform: translate3d(0px, 0px, -80px) rotate3d(0, 0, 0, 90deg); */
     }
 
 
@@ -1540,11 +1534,9 @@
       }
 
       init() {
-        console.dir(this.baseNode)
-
         document.body.addEventListener('touchmove', function (e) {
-          e.preventDefault(); 
-      }, { capture: false, passive: false, once: false });
+            e.preventDefault(); 
+        }, { capture: false, passive: false, once: false });
 
         //禁止页面滑动
         history.pushState(null, null, document.URL);
@@ -1578,8 +1570,7 @@
 
               const level = secondList[j]
 
-              // level.style.transform = `translateZ(${80* (1 - j)}px) rotateZ(0deg)`
-              // level.style.transform = `translate3d(0px, 0px, ${80* (1 - j)}px) rotate3d(0, 0, 0, 90deg)`
+              level.style.transform = `translateZ(${33.33* (1 - j)}%) rotateZ(0deg)`
 
               for (let k = 0, klen = secondList[j]['children'].length; k < klen; k++) { // 9个block
 
@@ -1796,7 +1787,7 @@
           const rotateZ = this.getTransformInfo(node)[1] - 0
 
           this['baseList'][this.rotateDirection[0]]['children'][this['rotateDirection'][1]]['style']['transform'] =
-            `translateZ(${translateZ}px) rotateZ(${rotateZ + this.rotateDirection[2] * 90}deg)`
+            `translateZ(${translateZ}%) rotateZ(${rotateZ + this.rotateDirection[2] * 90}deg)`
 
           setTimeout(() => {
 
@@ -1874,7 +1865,6 @@
 
             let userRotateX, userRotateY
 
-            // this.getTransformInfo(this.baseNode)[0] || 45
 
             const directionX = _this.getTransformInfo(_this.baseNode)[0] || 45
 
