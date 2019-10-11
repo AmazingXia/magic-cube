@@ -1503,9 +1503,7 @@
     <p class="el-message__content">congratulation!!!</p>
   </div>
   <script>
-    // document.addEventListener("touchmove",(e) => {
-    //   e.preventDefault();
-    // }, false);
+ 
 
     class Base {
       constructor(baseNode) {
@@ -1526,6 +1524,9 @@
       }
 
       init() {
+        // document.addEventListener("touchmove",(e) => {
+        //   e.preventDefault();
+        // }, false);
 
         //禁止页面滑动
         history.pushState(null, null, document.URL);
@@ -1841,6 +1842,7 @@
           const originRotateY = this.getTransformInfo(this.baseNode)[1]
 
           document.ontouchmove = (ev) => {
+            ev.preventDefault();
             const freshPageX = ev.touches[0].pageX
             const freshPageY = ev.touches[0].pageY
 
