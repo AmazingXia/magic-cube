@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,minimum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>magic-cube</title>
   <link rel="icon" href="https://avatars2.githubusercontent.com/u/47840241?s=460&v=4" type="images/x-ico" />
@@ -141,10 +141,7 @@
       top: 0;      
       background-color: rgb(90, 85, 94);
       background-color: rgb(62, 132, 224);
-      overflow: hidden;
-
       transform: translateZ(80px) rotateZ(0deg);
-
     }
 
     .center {
@@ -1506,9 +1503,9 @@
     <p class="el-message__content">congratulation!!!</p>
   </div>
   <script>
-    document.addEventListener("touchmove",(e) => {
-      e.preventDefault();
-    }, false);
+    // document.addEventListener("touchmove",(e) => {
+    //   e.preventDefault();
+    // }, false);
 
     class Base {
       constructor(baseNode) {
@@ -1562,7 +1559,7 @@
 
               const level = secondList[j]
 
-              // level.style.transform = `translateZ(${80 * (1 - j)}px) rotateZ(0deg)`
+              level.style.transform = `translateZ(${80 * (1 - j)}px) rotateZ(0deg)`
 
               for (let k = 0, klen = secondList[j]['children'].length; k < klen; k++) { // 9个block
 
