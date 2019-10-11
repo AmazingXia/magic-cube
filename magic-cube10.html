@@ -65,11 +65,12 @@
     }
 
     .base {
-      position: relative;
+      position: absolute;
       height: 242px;
       width: 242px;
-      margin: auto;
-      margin-top: 200px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       transform-style: preserve-3d;
       user-select: none;
     }
@@ -1601,7 +1602,19 @@
                       that.dragDirection = ''
                     }, { capture: false, passive: false, once: false })
 
-                    // girdDom.classList.add('red')
+
+                    // pc
+                    girdDom.addEventListener('mousedown', (e) => {
+                      this.startTarchDom = e.target
+                    }, false)
+
+                    girdDom.addEventListener('mouseup', function () {
+                      if (that.startTarchDom === null) return
+                      that.endTarchDom = this
+                      that.calcRotateMethod()
+                      that.surfaceRotation()
+                      that.dragDirection = ''
+                    }, false)
                   }
                 }
               }
@@ -1842,6 +1855,47 @@
 
       bindRotate() {
 
+        document.onmousedown = (e) => {
+          if (e.target.toString().toLowerCase().includes('div')) return
+          const originX = e.pageX;
+          const originY = e.pageY;
+          if (this.baseNode.style.transform === '') {
+            this.baseNode.style.transform = 'rotateX(45deg) rotateY(45deg)'
+          }
+
+          const originRotateX = this.getTransformInfo(this.baseNode)[0]
+          const originRotateY = this.getTransformInfo(this.baseNode)[1]
+
+          document.onmousemove = (ev) => {
+            const freshPageX = ev.pageX
+            const freshPageY = ev.pageY
+
+            let userRotateX, userRotateY
+
+            this.getTransformInfo(this.baseNode)[0] || 45
+
+
+            const directionX = this.getTransformInfo(this.baseNode)[0] || 45
+
+            // console.log('方向===>', directionX);
+            if ((90 > directionX && directionX > -90) || (-270 < directionX && directionX < -180) || (270 <
+              directionX && directionX < 360)) {
+              userRotateX = (-freshPageX + originX) / 500 * 360
+            } else {
+              userRotateX = (freshPageX - originX) / 500 * 360
+            }
+            userRotateY = (freshPageY - originY) / 500 * 360
+
+            const X = ((originRotateX) - (userRotateY) - 0) % 360
+            const Y = ((originRotateY) - (userRotateX) - 0) % 360
+
+            this.baseNode.style.transform = `rotateX(${X}deg) rotateY(${Y}deg)`;
+          }
+          document.onmouseup = () => {
+            document.onmousemove = null
+          }
+        }
+
         document.addEventListener('touchstart', (e) => {
 
           const _this = this
@@ -2045,8 +2099,6 @@
       }
 
       getTransformInfo(node) {
-        console.dir(node)
-        console.log('node.style.transform.match(/-?\d+(\.\d+)?/g)===>', node.style.transform.match(/-?\d+(\.\d+)?/g));
         return node.style.transform.match(/-?\d+(\.\d+)?/g)
       }
 
