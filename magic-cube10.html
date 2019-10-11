@@ -1505,15 +1505,15 @@
   </div>
   <script>
     
-    document.body.addEventListener('touchmove', function (e) {
-        e.preventDefault(); 
-    }, { capture: false, passive: false, once: false });
+ 
 
     //  第一个参数的意思  true|false  事件捕获阶段冒泡阶段
 
     // 第二个参数  true|flase  不能调用 | 可以调用preventDefault()
 
     // 第三个参数 once  true|false 只能执行一次fn  | 不限制
+
+    // console.log('document.body.offsetWidth', document.body.offsetWidth)
  
 
     class Base {
@@ -1535,9 +1535,11 @@
       }
 
       init() {
-        // document.addEventListener("touchmove",(e) => {
-        //   e.preventDefault();
-        // }, false);
+        console.dir(this.baseNode)
+
+        document.body.addEventListener('touchmove', function (e) {
+          e.preventDefault(); 
+      }, { capture: false, passive: false, once: false });
 
         //禁止页面滑动
         history.pushState(null, null, document.URL);
@@ -1571,7 +1573,8 @@
 
               const level = secondList[j]
 
-              // level.style.transform = `translateZ(${80 * (1 - j)}px) rotateZ(0deg)`
+              // level.style.transform = `translateZ(${80* (1 - j)}px) rotateZ(0deg)`
+              level.style.transform = `translate3d(0px, 0px, ${80* (1 - j)}px) rotate3d(0, 0, 0, 90deg)`
 
               for (let k = 0, klen = secondList[j]['children'].length; k < klen; k++) { // 9个block
 
