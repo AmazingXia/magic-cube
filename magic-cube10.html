@@ -15,6 +15,7 @@
     html, body {
       overflow: hidden;
       height: 100%;
+      touch-action: none;
     }
 
     ul {}
@@ -1506,7 +1507,13 @@
     
     document.body.addEventListener('touchmove', function (e) {
         e.preventDefault(); 
-    }, {passive: false});
+    }, { capture: false, passive: false, once: false });
+
+    //  第一个参数的意思  true|false  事件捕获阶段冒泡阶段
+
+    // 第二个参数  true|flase  不能调用 | 可以调用preventDefault()
+
+    // 第三个参数 once  true|false 只能执行一次fn  | 不限制
  
 
     class Base {
@@ -1580,19 +1587,20 @@
                     girdDom.addEventListener('touchstart', (e) => {
                       e.preventDefault()
                       this.startTarchDom = e.target
-                    }, false)
+                    }, { capture: false, passive: false, once: false })
 
                     const that = this
 
                     girdDom.addEventListener('touchend', function (e) {
                       e.preventDefault()
+                      
                       if (that.startTarchDom === null) return
 
                       that.endTarchDom = document.elementFromPoint(event.changedTouches[0].pageX, event.changedTouches[0].pageY)
                       that.calcRotateMethod()
                       that.surfaceRotation()
                       that.dragDirection = ''
-                    }, false)
+                    }, { capture: false, passive: false, once: false })
 
                     // girdDom.classList.add('red')
                   }
@@ -1834,10 +1842,16 @@
       }
 
       bindRotate() {
-        document.ontouchstart = (e) => {
+
+        document.addEventListener('touchstart', (e) => {
+
+          const _this = this
+
           if (e.target.toString().toLowerCase().includes('div')) return
+
           const originX = e['touches'][0].pageX;
           const originY = e['touches'][0].pageY;
+
           if (this.baseNode.style.transform === '') {
             this.baseNode.style.transform = 'rotateX(45deg) rotateY(45deg)'
           }
@@ -1845,7 +1859,7 @@
           const originRotateX = this.getTransformInfo(this.baseNode)[0]
           const originRotateY = this.getTransformInfo(this.baseNode)[1]
 
-          document.ontouchmove = (ev) => {
+          const touchmove = function (ev) { 
             ev.preventDefault();
             const freshPageX = ev.touches[0].pageX
             const freshPageY = ev.touches[0].pageY
@@ -1854,8 +1868,7 @@
 
             // this.getTransformInfo(this.baseNode)[0] || 45
 
-
-            const directionX = this.getTransformInfo(this.baseNode)[0] || 45
+            const directionX = _this.getTransformInfo(_this.baseNode)[0] || 45
 
             // console.log('方向===>', directionX);
             if ((90 > directionX && directionX > -90) || (-270 < directionX && directionX < -180) || (270 <
@@ -1869,20 +1882,19 @@
             const X = ((originRotateX) - (userRotateY) - 0) % 360
             const Y = ((originRotateY) - (userRotateX) - 0) % 360
 
-            this.baseNode.style.transform = `rotateX(${X}deg) rotateY(${Y}deg)`;
+            _this.baseNode.style.transform = `rotateX(${X}deg) rotateY(${Y}deg)`;
           }
-          document.ontouchend = () => {
-            document.ontouchmove = null
-          }
-        }
 
-        // 兼容电脑
+          document.addEventListener('touchmove', touchmove, { capture: false, passive: false, once: false })
 
+          document.addEventListener('touchend',(event) => {
 
+            document.removeEventListener('touchmove', touchmove)
 
-
+          }, { capture: false, passive: false, once: false })
 
 
+        }, { capture: false, passive: false, once: false })
 
       }
 
