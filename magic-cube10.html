@@ -74,9 +74,19 @@
       user-select: none;
     }
 
+    .base-public {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 240px;
+      box-sizing: border-box;
+      transform-style: preserve-3d;
+      transform-origin: 120px 120px;
+    }
+
     .base-base {
       /* background-color: #F7685B; */
-
       transform: rotate3d(1, 0, 0, 90deg);
     }
 
@@ -89,17 +99,6 @@
     .base-front {
       /* background-color: #FFB946; */
       /* transform: translateX(400px); */
-    }
-
-    .base-public {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 240px;
-      height: 240px;
-      box-sizing: border-box;
-      transform-style: preserve-3d;
-      transition: transform 1s linear;
     }
 
     .cube {
