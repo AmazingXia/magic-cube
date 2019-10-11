@@ -1503,6 +1503,10 @@
     <p class="el-message__content">congratulation!!!</p>
   </div>
   <script>
+    
+    document.body.addEventListener('touchmove', function (e) {
+        e.preventDefault(); 
+    }, {passive: false});
  
 
     class Base {
