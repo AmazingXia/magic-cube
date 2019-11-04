@@ -3,15 +3,21 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,minimum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>magic-cube</title>
   <link rel="icon" href="https://avatars2.githubusercontent.com/u/47840241?s=460&v=4" type="images/x-ico" />
-  <!-- https://avatars2.githubusercontent.com/u/47840241?s=460&v=4 -->
   <style>
     * {
       margin: 0;
       padding: 0;
+    }
+    html, body {
+      overflow: hidden;
+      height: 100%;
+      touch-action: none;
+      background: rgb(134, 122, 209);
+      position: relative;
     }
 
     ul {}
@@ -63,15 +69,25 @@
       position: relative;
       height: 242px;
       width: 242px;
-      margin: auto;
-      margin-top: 200px;
+      margin: 0 auto;
+      margin-top: 180px;
       transform-style: preserve-3d;
       user-select: none;
     }
 
+    .base-public {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 240px;
+      box-sizing: border-box;
+      transform-style: preserve-3d;
+      transform-origin: 120px 120px;
+    }
+
     .base-base {
       /* background-color: #F7685B; */
-
       transform: rotate3d(1, 0, 0, 90deg);
     }
 
@@ -85,20 +101,6 @@
       /* background-color: #FFB946; */
       /* transform: translateX(400px); */
     }
-
-    .base-public {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 240px;
-      height: 240px;
-      box-sizing: border-box;
-      transform-style: preserve-3d;
-      transition: transform 1s linear;
-    }
-
-
-
 
     .cube {
       position: absolute;
@@ -130,41 +132,45 @@
 
 
     .left {
-      transform: translate3d(0px, 0px, 80px);
+      width: 240px;
+      height: 240px;
+      /* transform: translate3d(0px, 0px, 80px); */
       transform-style: preserve-3d;
-      transform-origin: 120px 120px -120px;
+      transform-origin: 50% 50%;
       transition: transform 0.3s linear;
-      width: 100%;
-      height: 100%;
       position: absolute;
       left: 0;
-      top: 0;
+      top: 0;      
+      background-color: rgb(90, 85, 94);
+      background-color: rgb(62, 132, 224);
+      transform: translateZ(33.33%) rotateZ(0deg);
     }
 
     .center {
+      width: 240px;
+      height: 240px;
       transform: translate3d(0px, 0px, 0px);
       transform-style: preserve-3d;
-      transform-origin: 120px 120px 0px;
+      transform-origin: 50% 50%;
       transition: transform 0.3s linear;
-      width: 100%;
-      height: 100%;
       position: absolute;
       left: 0;
       top: 0;
-
+      background-color: rgb(90, 85, 94);
+      transform: translateZ(0) rotateZ(0deg);
     }
 
     .right {
-      transform: translate3d(0px, 0px, -80px);
+      width: 240px;
+      height: 240px;
       transform-style: preserve-3d;
-      transform-origin: 120px 120px 120px;
+      transform-origin: 50% 50%;
       transition: transform 0.3s linear;
-      width: 100%;
-      height: 100%;
       position: absolute;
       left: 0;
       top: 0;
-
+      background-color: #F7685B;
+      transform: translateZ(-33.33%) rotateZ(0deg);
     }
 
 
@@ -268,7 +274,7 @@
     }
 
     .el-message {
-        min-width: 380px;
+        min-width: 70%;
         box-sizing: border-box;
         border: 1px solid #ebeef5;
         position: fixed;
@@ -445,6 +451,7 @@
         </div>
       </div>
 
+      <!-- <div class="center" style="transform: translateZ(0px) rotateZ(0deg)"> -->
       <div class="center">
         <div class="cube cube-second cube-second-first">
           <div class="public gray">
@@ -574,6 +581,7 @@
         </div>
       </div>
 
+      <!-- <div class="right" style="transform: translateZ(-80px) rotateZ(0deg)"> -->
       <div class="right">
         <div class="cube cube-third cube-third-first">
           <div class="public gray">
@@ -706,6 +714,7 @@
 
     <div class="base-side base-public">
 
+      <!-- <div class="left" style="transform: translateZ(80px) rotateZ(0deg)"> -->
       <div class="left">
         <div class="cube cube-first cube-first-first">
           <div class="public gray">
@@ -834,6 +843,7 @@
           </div>
         </div>
       </div>
+      <!-- <div class="center" style="transform: translateZ(0px) rotateZ(0deg)"> -->
       <div class="center">
         <div class="cube cube-second cube-second-first">
           <div class="public gray">
@@ -963,6 +973,7 @@
         </div>
       </div>
 
+      <!-- <div class="right" style="transform: translateZ(-80px) rotateZ(0deg)"> -->
       <div class="right">
         <div class="cube cube-third cube-third-first">
           <div class="public gray">
@@ -1095,6 +1106,7 @@
 
     <div class="base-front base-public">
 
+      <!-- <div class="left" style="transform: translateZ(80px) rotateZ(0deg)"> -->
       <div class="left">
         <div class="cube cube-first cube-first-first">
           <div class="public gray">
@@ -1224,6 +1236,7 @@
         </div>
       </div>
 
+      <!-- <div class="center" style="transform: translateZ(0px) rotateZ(0deg)"> -->
       <div class="center">
         <div class="cube cube-second cube-second-first">
           <div class="public gray">
@@ -1353,6 +1366,7 @@
         </div>
       </div>
 
+      <!-- <div class="right" style="transform: translateZ(-80px) rotateZ(0deg)"> -->
       <div class="right">
         <div class="cube cube-third cube-third-first">
           <div class="public gray">
@@ -1490,6 +1504,14 @@
     <p class="el-message__content">congratulation!!!</p>
   </div>
   <script>
+    //  第一个参数的意思  true|false  事件捕获阶段冒泡阶段
+
+    // 第二个参数  true|flase  不能调用 | 可以调用preventDefault()
+
+    // 第三个参数 once  true|false 只能执行一次fn  | 不限制
+
+    // console.log('document.body.offsetWidth', document.body.offsetWidth)
+ 
 
     class Base {
       constructor(baseNode) {
@@ -1506,199 +1528,20 @@
 
         this.colorPosition = [null, null, null, null, null]
 
-        this.colorMap = {
-          '0': {
-            '1': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '3': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '5': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-          },
-          '1': {
-            '0': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '1': {
-              '0': 'null',
-              '2': 'null',
-              '4': 'null',
-              '6': 'null',
-            },
-            '2': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '3': {
-              '0': 'null',
-              '2': 'null',
-              '4': 'null',
-              '6': 'null',
-            },
-            '4': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '5': {
-              '0': 'null',
-              '2': 'null',
-              '4': 'null',
-              '6': 'null',
-            },
-            '6': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-          },
-          '2': {
-            '1': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '3': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '5': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-          },
-          '3': {
-            '0': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '1': {
-              '0': 'null',
-              '2': 'null',
-              '4': 'null',
-              '6': 'null',
-            },
-            '2': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '3': {
-              '0': 'null',
-              '2': 'null',
-              '4': 'null',
-              '6': 'null',
-            },
-            '4': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '5': {
-              '0': 'null',
-              '2': 'null',
-              '4': 'null',
-              '6': 'null',
-            },
-            '6': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-          },
-          '4': {
-            '1': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '3': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '5': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-          },
-          '5': {
-            '0': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '1': {
-              '0': 'null',
-              '2': 'null',
-              '4': 'null',
-              '6': 'null',
-            },
-            '2': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '3': {
-              '0': 'null',
-              '2': 'null',
-              '4': 'null',
-              '6': 'null',
-            },
-            '4': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '5': {
-              '0': 'null',
-              '2': 'null',
-              '4': 'null',
-              '6': 'null',
-            },
-            '6': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-          },
-          '6': {
-            '1': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '3': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            },
-            '5': {
-              '1': 'null',
-              '3': 'null',
-              '5': 'null',
-            }
-          }
-        }
+        this.colorMap = {}
       }
 
       init() {
+        document.body.addEventListener('touchmove', function (e) {
+            e.preventDefault(); 
+        }, { capture: false, passive: false, once: false });
+
+        //禁止页面滑动
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+        });
+        
         this.bindRotate()
         this.setColorSet()
 
@@ -1725,7 +1568,7 @@
 
               const level = secondList[j]
 
-              level.style.transform = `translateZ(${80 * (1 - j)}px) rotateZ(0deg)`
+              level.style.transform = `translateZ(${(1 - j)*80}px) rotateZ(0)`
 
               for (let k = 0, klen = secondList[j]['children'].length; k < klen; k++) { // 9个block
 
@@ -1738,13 +1581,29 @@
                   this.initColorMap(i, j, k, m, block, girdDom, level)
 
                   if (i === 0) {
-                    girdDom.addEventListener('mousedown', (e) => {
-
+                    girdDom.addEventListener('touchstart', (e) => {
+                      e.preventDefault()
                       this.startTarchDom = e.target
-
-                    }, false)
+                    }, { capture: false, passive: false, once: false })
 
                     const that = this
+
+                    girdDom.addEventListener('touchend', function (e) {
+                      e.preventDefault()
+                      
+                      if (that.startTarchDom === null) return
+
+                      that.endTarchDom = document.elementFromPoint(event.changedTouches[0].pageX, event.changedTouches[0].pageY)
+                      that.calcRotateMethod()
+                      that.surfaceRotation()
+                      that.dragDirection = ''
+                    }, { capture: false, passive: false, once: false })
+
+
+                    // pc
+                    girdDom.addEventListener('mousedown', (e) => {
+                      this.startTarchDom = e.target
+                    }, false)
 
                     girdDom.addEventListener('mouseup', function () {
                       if (that.startTarchDom === null) return
@@ -1753,8 +1612,6 @@
                       that.surfaceRotation()
                       that.dragDirection = ''
                     }, false)
-
-                    // girdDom.classList.add('red')
                   }
                 }
               }
@@ -1771,136 +1628,149 @@
         // direction 方向
         if (this.startTarchDom === null || this.endTarchDom === null) return
 
+
         // console.log('this.startTarchDom===>', this.startTarchDom)
         // console.log('this.endTarchDom===>', this.endTarchDom)
 
-        const { X: x1, Y: y1, Z: z1 } = this.startTarchDom.dataset
-        const { X: x2, Y: y2, Z: z2 } = this.endTarchDom.dataset
+        try {
+          const { X: x1, Y: y1, Z: z1 } = this.startTarchDom.dataset
+          const { X: x2, Y: y2, Z: z2 } = this.endTarchDom.dataset
 
-        // const startToOrigin = Math.sqrt(x1^2 + y1^2 + z1^2)
-        // const endToOrigin = Math.sqrt(x2^2 + y2^2 + z2^2)
+          // console.log('x1,y1,z1===>', x1, y1, z1)
+          // console.log('x2,y2,z2===>', x2, y2, z2)
 
-        const startList = [x1, y1, z1]
-        const endList = [x2, y2, z2]
-        let index = -1
-        startList.forEach((start, startIndex) => {
-          endList.forEach((end, endIndex) => {
-            if ((end - start === 4 || end - start === -4) && startIndex === endIndex) {
-              // console.log('相差为4=================',start,end,startIndex,endIndex)
-              index = startIndex
-            }
-          })
-        })
+          // const startToOrigin = Math.sqrt(x1^2 + y1^2 + z1^2)
+          // const endToOrigin = Math.sqrt(x2^2 + y2^2 + z2^2)
 
-        let flag = 0
-        startList.forEach((start, startIndex) => {
-          endList.forEach((end, endIndex) => {
-            if (index != -1 && startIndex != index) {
-              if (startIndex === endIndex && end === start) {
-                flag += 1
-                // console.log('相等',start,end,startIndex,endIndex,'++++++++++++++++',flag)
+          const startList = [x1, y1, z1]
+          const endList = [x2, y2, z2]
+          let index = -1
+
+          startList.forEach((start, startIndex) => {
+            endList.forEach((end, endIndex) => {
+              if ((end - start === 4 || end - start === -4) && startIndex === endIndex) {
+                // console.log('相差为4=================',start,end,startIndex,endIndex)
+                index = startIndex
               }
+            })
+          })
+
+          // console.log('index===>', index);
+
+          let flag = 0
+          startList.forEach((start, startIndex) => {
+            endList.forEach((end, endIndex) => {
+              if (index != -1 && startIndex != index) {
+                if (startIndex === endIndex && end === start) {
+                  flag += 1
+                  // console.log('相等',start,end,startIndex,endIndex,'++++++++++++++++',flag)
+                }
+              }
+            })
+          })
+
+          if (flag != 2) {
+            // console.log('不满足条件')
+            return
+          }
+
+          const distance = [x2 - x1, y2 - y1, z2 - z1]
+
+          if (distance.every(item => Math.abs(item) !== 4)) {
+            this.startTarchDom = null
+            this.endTarchDom = null
+            return
+          };
+          if (distance.every(item => Math.abs(item) === 0)) {
+            this.startTarchDom = null
+            this.endTarchDom = null
+            return
+          };
+
+          // console.log('x1,y1,z1===>', x1, y1, z1)
+          // console.log('x2,y2,z2===>', x2, y2, z2)
+          // console.log('distance===>', distance);
+
+
+          const coord = distance.map((item, index) => { // [x1, -4, z1]
+            if (item === 0) {
+              return startList[index]
+            } else {
+              return item
             }
           })
-        })
-        if (flag != 2) {
-          // console.log('不满足条件')
-          return
-        }
+          // console.log('coord===>', coord);
 
-        const distance = [x2 - x1, y2 - y1, z2 - z1]
-
-        if (distance.every(item => Math.abs(item) !== 4)) {
-          this.startTarchDom = null
-          this.endTarchDom = null
-          return
-        };
-        if (distance.every(item => Math.abs(item) === 0)) {
-          this.startTarchDom = null
-          this.endTarchDom = null
-          return
-        };
-
-        // console.log('x1,y1,z1===>', x1, y1, z1)
-        // console.log('x2,y2,z2===>', x2, y2, z2)
-        // console.log('distance===>', distance);
-
-
-        const coord = distance.map((item, index) => { // [x1, -4, z1]
-          if (item === 0) {
-            return startList[index]
-          } else {
-            return item
-          }
-        })
-        // console.log('coord===>', coord);
-
-        const len = coord.map(item => { // 中心坐标为(3,3,3)
-          if (Math.abs(item) !== 4) {
-            return item - 3
-          } else {
-            return item
-          }
-        })
-        // console.log('len===>', len);
-        // len = [距离, -4, 距离]
-
-        let maxItem = 0
-        let minItem = 4
-
-        const rotateObj = {
-          maxIndex: '',
-          minIndex: '',
-          midIndex: '',
-          symbol: 0,
-          axis: ''
-        }
-
-        len.forEach((item, index) => {
-          if (Math.abs(item) !== 4) {
-
-            if (maxItem < Math.abs(item)) {
-              maxItem = Math.abs(item)
-              rotateObj.maxIndex = index
+          const len = coord.map(item => { // 中心坐标为(3,3,3)
+            if (Math.abs(item) !== 4) {
+              return item - 3
+            } else {
+              return item
             }
-            if (minItem > Math.abs(item)) {
-              minItem = Math.abs(item)
-              rotateObj.minIndex = index
+          })
+          // console.log('len===>', len);
+          // len = [距离, -4, 距离]
+
+          let maxItem = 0
+          let minItem = 4
+
+          const rotateObj = {
+            maxIndex: '',
+            minIndex: '',
+            midIndex: '',
+            symbol: 0,
+            axis: ''
+          }
+
+          len.forEach((item, index) => {
+            if (Math.abs(item) !== 4) {
+
+              if (maxItem < Math.abs(item)) {
+                maxItem = Math.abs(item)
+                rotateObj.maxIndex = index
+              }
+              if (minItem > Math.abs(item)) {
+                minItem = Math.abs(item)
+                rotateObj.minIndex = index
+              }
+            } else {
+              rotateObj.symbol = item / 4
             }
-          } else {
-            rotateObj.symbol = item / 4
+          })
+
+          rotateObj.midIndex = 3 - rotateObj.minIndex - rotateObj.maxIndex
+          // console.log('rotateObj===>', rotateObj);
+
+          const temp = {
+            'x': 1, // x = 0平面 旋转对应的魔方序号
+            'y': 2, // x = 0平面
+            'z': 0  // z = 0平面
           }
-        })
 
-        rotateObj.midIndex = 3 - rotateObj.minIndex - rotateObj.maxIndex
-        // console.log('rotateObj===>', rotateObj);
+          this.rotateDirection[0] = temp[['x', 'y', 'z'][rotateObj.minIndex]]
 
-        const temp = {
-          'x': 1, // x = 0平面 旋转对应的魔方序号
-          'y': 2, // x = 0平面
-          'z': 0  // z = 0平面
-        }
-
-        this.rotateDirection[0] = temp[['x', 'y', 'z'][rotateObj.minIndex]]
-
-        if (this.rotateDirection[0] === 0 || this.rotateDirection[0] === 2) {
-          this.rotateDirection[1] = (5 - startList[rotateObj.minIndex]) / 2
-        }
-        if (this.rotateDirection[0] === 1) {
-          this.rotateDirection[1] = (startList[rotateObj.minIndex] - 1) / 2
-        }
-
-        if (rotateObj.midIndex === 0) {
-          this.rotateDirection[2] = rotateObj.symbol * (startList[rotateObj.maxIndex] - 3) / 3
-          if (rotateObj.maxIndex === 1) {
-            this.rotateDirection[2] = -this.rotateDirection[2]
+          if (this.rotateDirection[0] === 0 || this.rotateDirection[0] === 2) {
+            this.rotateDirection[1] = (5 - startList[rotateObj.minIndex]) / 2
           }
-        }
-        if (rotateObj.midIndex === 1) {
-          this.rotateDirection[2] = rotateObj.symbol * (startList[rotateObj.maxIndex] - 3) / 3
-        }
-        if (rotateObj.midIndex === 2) {
-          this.rotateDirection[2] = -rotateObj.symbol * (startList[rotateObj.maxIndex] - 3) / 3
+          if (this.rotateDirection[0] === 1) {
+            this.rotateDirection[1] = (startList[rotateObj.minIndex] - 1) / 2
+          }
+
+          if (rotateObj.midIndex === 0) {
+            this.rotateDirection[2] = rotateObj.symbol * (startList[rotateObj.maxIndex] - 3) / 3
+            if (rotateObj.maxIndex === 1) {
+              this.rotateDirection[2] = -this.rotateDirection[2]
+            }
+          }
+          if (rotateObj.midIndex === 1) {
+            this.rotateDirection[2] = rotateObj.symbol * (startList[rotateObj.maxIndex] - 3) / 3
+          }
+          if (rotateObj.midIndex === 2) {
+            this.rotateDirection[2] = -rotateObj.symbol * (startList[rotateObj.maxIndex] - 3) / 3
+          }
+
+        } catch (err) {
+          console.log('err===>', err);
         }
       }
 
@@ -1981,6 +1851,7 @@
       }
 
       bindRotate() {
+
         document.onmousedown = (e) => {
           if (e.target.toString().toLowerCase().includes('div')) return
           const originX = e.pageX;
@@ -2021,6 +1892,59 @@
             document.onmousemove = null
           }
         }
+
+        document.addEventListener('touchstart', (e) => {
+
+          const _this = this
+
+          if (e.target.toString().toLowerCase().includes('div')) return
+
+          const originX = e['touches'][0].pageX;
+          const originY = e['touches'][0].pageY;
+
+          if (this.baseNode.style.transform === '') {
+            this.baseNode.style.transform = 'rotateX(45deg) rotateY(45deg)'
+          }
+
+          const originRotateX = this.getTransformInfo(this.baseNode)[0]
+          const originRotateY = this.getTransformInfo(this.baseNode)[1]
+
+          const touchmove = function (ev) { 
+            ev.preventDefault();
+            const freshPageX = ev.touches[0].pageX
+            const freshPageY = ev.touches[0].pageY
+
+            let userRotateX, userRotateY
+
+
+            const directionX = _this.getTransformInfo(_this.baseNode)[0] || 45
+
+            // console.log('方向===>', directionX);
+            if ((90 > directionX && directionX > -90) || (-270 < directionX && directionX < -180) || (270 <
+              directionX && directionX < 360)) {
+              userRotateX = (-freshPageX + originX) / 500 * 360
+            } else {
+              userRotateX = (freshPageX - originX) / 500 * 360
+            }
+            userRotateY = (freshPageY - originY) / 500 * 360
+
+            const X = ((originRotateX) - (userRotateY) - 0) % 360
+            const Y = ((originRotateY) - (userRotateX) - 0) % 360
+
+            _this.baseNode.style.transform = `rotateX(${X}deg) rotateY(${Y}deg)`;
+          }
+
+          document.addEventListener('touchmove', touchmove, { capture: false, passive: false, once: false })
+
+          document.addEventListener('touchend',(event) => {
+
+            document.removeEventListener('touchmove', touchmove)
+
+          }, { capture: false, passive: false, once: false })
+
+
+        }, { capture: false, passive: false, once: false })
+
       }
 
       initColorMap(i, j, k, m, block, girdDom, level) {
@@ -2094,8 +2018,21 @@
         girdDom.dataset.X = X
         girdDom.dataset.Z = Z
 
-        this.colorMap[X][Y][Z] = currColorClass
-        // console.log('this.colorMap===>', this.colorMap);
+
+        try {
+          if (!this.colorMap[X]) {
+            this['colorMap'][X] = {}
+          }
+          if (!this['colorMap'][X][Y]) {
+            this['colorMap'][X][Y] = {}
+          }
+          if (!this.colorMap[X][Y][Z]) {
+            this['colorMap'][X][Y][Z] = ''
+          }
+
+          this.colorMap[X][Y][Z] = currColorClass
+        } catch (err) {
+        }
       }
 
       // 记录第 i 个立方体的颜色
@@ -2160,6 +2097,12 @@
 
       getTransformInfo(node) {
         return node.style.transform.match(/-?\d+(\.\d+)?/g)
+      }
+
+      // 随机
+
+      random() {
+        Math.floor(Math.random() * 3 - 1)
       }
 
 
