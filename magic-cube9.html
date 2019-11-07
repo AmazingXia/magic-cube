@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,minimum-scale=1.0, user-scalable=no">
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1,maximum-scale=1.0,minimum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>magic-cube</title>
   <link rel="icon" href="https://avatars2.githubusercontent.com/u/47840241?s=460&v=4" type="images/x-ico" />
@@ -12,7 +13,9 @@
       margin: 0;
       padding: 0;
     }
-    html, body {
+
+    html,
+    body {
       overflow: hidden;
       height: 100%;
       touch-action: none;
@@ -140,7 +143,7 @@
       transition: transform 0.3s linear;
       position: absolute;
       left: 0;
-      top: 0;      
+      top: 0;
       background-color: rgb(90, 85, 94);
       background-color: rgb(62, 132, 224);
       transform: translateZ(33.33%) rotateZ(0deg);
@@ -274,24 +277,24 @@
     }
 
     .el-message {
-        min-width: 70%;
-        box-sizing: border-box;
-        border: 1px solid #ebeef5;
-        position: fixed;
-        left: 50%;
-        top: 20px;
-        opacity: 0;
-        transform: translateX(-50%) translateY(-40px);
-        transition: opacity .3s,-webkit-transform .4s;
-        transition: opacity .3s,transform .4s;
-        transition: opacity .3s,transform .4s,-webkit-transform .4s;
-        padding: 5px 15px 5px 15px;
-        display: flex;
-        align-items: center;
-        border-radius: 4px;
-        overflow: hidden;
-        background-color: #f0f9eb;
-        border-color: #e1f3d8;
+      min-width: 70%;
+      box-sizing: border-box;
+      border: 1px solid #ebeef5;
+      position: fixed;
+      left: 50%;
+      top: 20px;
+      opacity: 0;
+      transform: translateX(-50%) translateY(-40px);
+      transition: opacity .3s, -webkit-transform .4s;
+      transition: opacity .3s, transform .4s;
+      transition: opacity .3s, transform .4s, -webkit-transform .4s;
+      padding: 5px 15px 5px 15px;
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+      overflow: hidden;
+      background-color: #f0f9eb;
+      border-color: #e1f3d8;
     }
 
     .el-message--success .el-message__content {
@@ -301,6 +304,7 @@
       font-size: 14px;
       line-height: 1;
     }
+
     .success {
       width: 38px;
       height: 38px;
@@ -1511,7 +1515,7 @@
     // 第三个参数 once  true|false 只能执行一次fn  | 不限制
 
     // console.log('document.body.offsetWidth', document.body.offsetWidth)
- 
+
 
     class Base {
       constructor(baseNode) {
@@ -1533,15 +1537,23 @@
 
       init() {
         document.body.addEventListener('touchmove', function (e) {
-            e.preventDefault(); 
-        }, { capture: false, passive: false, once: false });
+          e.preventDefault();
+        }, {
+          capture: false,
+          passive: false,
+          once: false
+        });
+
+        window.onbeforeunload = function (e) {
+          localStorage.setItem('colorMap', this.colorMap)
+        };
 
         //禁止页面滑动
         history.pushState(null, null, document.URL);
         window.addEventListener('popstate', function () {
-            history.pushState(null, null, document.URL);
+          history.pushState(null, null, document.URL);
         });
-        
+
         this.bindRotate()
         this.setColorSet()
 
@@ -1584,20 +1596,29 @@
                     girdDom.addEventListener('touchstart', (e) => {
                       e.preventDefault()
                       this.startTarchDom = e.target
-                    }, { capture: false, passive: false, once: false })
+                    }, {
+                      capture: false,
+                      passive: false,
+                      once: false
+                    })
 
                     const that = this
 
                     girdDom.addEventListener('touchend', function (e) {
                       e.preventDefault()
-                      
+
                       if (that.startTarchDom === null) return
 
-                      that.endTarchDom = document.elementFromPoint(event.changedTouches[0].pageX, event.changedTouches[0].pageY)
+                      that.endTarchDom = document.elementFromPoint(event.changedTouches[0].pageX, event
+                        .changedTouches[0].pageY)
                       that.calcRotateMethod()
                       that.surfaceRotation()
                       that.dragDirection = ''
-                    }, { capture: false, passive: false, once: false })
+                    }, {
+                      capture: false,
+                      passive: false,
+                      once: false
+                    })
 
 
                     // pc
@@ -1627,14 +1648,23 @@
         // startTarchDom 起始点, endTarchDom 结束点
         // direction 方向
         if (this.startTarchDom === null || this.endTarchDom === null) return
+        if (this.startTarchDom === this.endTarchDom) return
 
 
         // console.log('this.startTarchDom===>', this.startTarchDom)
         // console.log('this.endTarchDom===>', this.endTarchDom)
 
         try {
-          const { X: x1, Y: y1, Z: z1 } = this.startTarchDom.dataset
-          const { X: x2, Y: y2, Z: z2 } = this.endTarchDom.dataset
+          const {
+            X: x1,
+            Y: y1,
+            Z: z1
+          } = this.startTarchDom.dataset
+          const {
+            X: x2,
+            Y: y2,
+            Z: z2
+          } = this.endTarchDom.dataset
 
           // console.log('x1,y1,z1===>', x1, y1, z1)
           // console.log('x2,y2,z2===>', x2, y2, z2)
@@ -1644,107 +1674,56 @@
 
           const startList = [x1, y1, z1]
           const endList = [x2, y2, z2]
-          let index = -1
-
-          startList.forEach((start, startIndex) => {
-            endList.forEach((end, endIndex) => {
-              if ((end - start === 4 || end - start === -4) && startIndex === endIndex) {
-                // console.log('相差为4=================',start,end,startIndex,endIndex)
-                index = startIndex
-              }
-            })
-          })
-
-          // console.log('index===>', index);
-
-          let flag = 0
-          startList.forEach((start, startIndex) => {
-            endList.forEach((end, endIndex) => {
-              if (index != -1 && startIndex != index) {
-                if (startIndex === endIndex && end === start) {
-                  flag += 1
-                  // console.log('相等',start,end,startIndex,endIndex,'++++++++++++++++',flag)
-                }
-              }
-            })
-          })
-
-          if (flag != 2) {
-            // console.log('不满足条件')
-            return
-          }
 
           const distance = [x2 - x1, y2 - y1, z2 - z1]
-
-          if (distance.every(item => Math.abs(item) !== 4)) {
-            this.startTarchDom = null
-            this.endTarchDom = null
-            return
-          };
-          if (distance.every(item => Math.abs(item) === 0)) {
-            this.startTarchDom = null
-            this.endTarchDom = null
-            return
-          };
-
           // console.log('x1,y1,z1===>', x1, y1, z1)
           // console.log('x2,y2,z2===>', x2, y2, z2)
-          // console.log('distance===>', distance);
 
+          const rotateObj = {
+            maxIndex: 0,
+            minIndex: 0,
+            midIndex: '',
+            symbol: 0,
+          }
 
-          const coord = distance.map((item, index) => { // [x1, -4, z1]
-            if (item === 0) {
-              return startList[index]
-            } else {
-              return item
-            }
-          })
-          // console.log('coord===>', coord);
-
-          const len = coord.map(item => { // 中心坐标为(3,3,3)
-            if (Math.abs(item) !== 4) {
-              return item - 3
-            } else {
-              return item
-            }
-          })
-          // console.log('len===>', len);
-          // len = [距离, -4, 距离]
 
           let maxItem = 0
           let minItem = 4
+          let validate = -1
 
-          const rotateObj = {
-            maxIndex: '',
-            minIndex: '',
-            midIndex: '',
-            symbol: 0,
-            axis: ''
-          }
+          startList.forEach((item, index) => {
+            const el = endList[index]
 
-          len.forEach((item, index) => {
-            if (Math.abs(item) !== 4) {
-
-              if (maxItem < Math.abs(item)) {
-                maxItem = Math.abs(item)
+            if (item === el) {
+              validate++
+              if (Math.abs(item - 3) > maxItem) {
+                maxItem = Math.abs(item - 3)
                 rotateObj.maxIndex = index
               }
-              if (minItem > Math.abs(item)) {
-                minItem = Math.abs(item)
+
+              if (minItem > Math.abs(item - 3)) {
+                minItem = Math.abs(item - 3)
                 rotateObj.minIndex = index
               }
             } else {
-              rotateObj.symbol = item / 4
+              rotateObj.symbol = (el - item) / Math.abs(item - el)
+              rotateObj.midIndex = index
+
+              if ('135'.includes(el) && '135'.includes(item)) {
+                validate++
+              }
             }
           })
 
-          rotateObj.midIndex = 3 - rotateObj.minIndex - rotateObj.maxIndex
+          if (validate !== 2) {
+            return
+          }
           // console.log('rotateObj===>', rotateObj);
 
           const temp = {
             'x': 1, // x = 0平面 旋转对应的魔方序号
             'y': 2, // x = 0平面
-            'z': 0  // z = 0平面
+            'z': 0 // z = 0平面
           }
 
           this.rotateDirection[0] = temp[['x', 'y', 'z'][rotateObj.minIndex]]
@@ -1784,7 +1763,9 @@
             if (i === this.rotateDirection[0]) {
               this.baseList[i].style.visibility = 'visible'
               this.baseList[i].style.overflow = 'visible'
-              this['baseList'][this.rotateDirection[0]]['children'][this['rotateDirection'][1]]['style']['transition'] = `transform 0.3s`
+              this['baseList'][this.rotateDirection[0]]['children'][this['rotateDirection'][1]]['style'][
+                'transition'
+              ] = `transform 0.3s`
             } else {
               this.baseList[i].style.visibility = 'hidden'
               this.baseList[i].style.overflow = 'hidden'
@@ -1876,7 +1857,7 @@
 
             // console.log('方向===>', directionX);
             if ((90 > directionX && directionX > -90) || (-270 < directionX && directionX < -180) || (270 <
-              directionX && directionX < 360)) {
+                directionX && directionX < 360)) {
               userRotateX = (-freshPageX + originX) / 500 * 360
             } else {
               userRotateX = (freshPageX - originX) / 500 * 360
@@ -1909,7 +1890,7 @@
           const originRotateX = this.getTransformInfo(this.baseNode)[0]
           const originRotateY = this.getTransformInfo(this.baseNode)[1]
 
-          const touchmove = function (ev) { 
+          const touchmove = function (ev) {
             ev.preventDefault();
             const freshPageX = ev.touches[0].pageX
             const freshPageY = ev.touches[0].pageY
@@ -1921,7 +1902,7 @@
 
             // console.log('方向===>', directionX);
             if ((90 > directionX && directionX > -90) || (-270 < directionX && directionX < -180) || (270 <
-              directionX && directionX < 360)) {
+                directionX && directionX < 360)) {
               userRotateX = (-freshPageX + originX) / 500 * 360
             } else {
               userRotateX = (freshPageX - originX) / 500 * 360
@@ -1934,16 +1915,28 @@
             _this.baseNode.style.transform = `rotateX(${X}deg) rotateY(${Y}deg)`;
           }
 
-          document.addEventListener('touchmove', touchmove, { capture: false, passive: false, once: false })
+          document.addEventListener('touchmove', touchmove, {
+            capture: false,
+            passive: false,
+            once: false
+          })
 
-          document.addEventListener('touchend',(event) => {
+          document.addEventListener('touchend', (event) => {
 
             document.removeEventListener('touchmove', touchmove)
 
-          }, { capture: false, passive: false, once: false })
+          }, {
+            capture: false,
+            passive: false,
+            once: false
+          })
 
 
-        }, { capture: false, passive: false, once: false })
+        }, {
+          capture: false,
+          passive: false,
+          once: false
+        })
 
       }
 
@@ -1989,13 +1982,19 @@
         const originRotateZ = this.getTransformInfo(level)[1] % 360
 
         if (originRotateZ === 90 || originRotateZ === -270) {
-          this.colorPosition = [6 - this.colorPosition[1], this.colorPosition[0], this.colorPosition[2], this.colorPosition[3], this.colorPosition[4]]
+          this.colorPosition = [6 - this.colorPosition[1], this.colorPosition[0], this.colorPosition[2], this
+            .colorPosition[3], this.colorPosition[4]
+          ]
         }
         if (originRotateZ === 180 || originRotateZ === -180) {
-          this.colorPosition = [6 - this.colorPosition[0], 6 - this.colorPosition[1], this.colorPosition[2], this.colorPosition[3], this.colorPosition[4]]
+          this.colorPosition = [6 - this.colorPosition[0], 6 - this.colorPosition[1], this.colorPosition[2], this
+            .colorPosition[3], this.colorPosition[4]
+          ]
         }
         if (originRotateZ === 270 || originRotateZ === -90) {
-          this.colorPosition = [this.colorPosition[1], 6 - this.colorPosition[0], this.colorPosition[2], this.colorPosition[3], this.colorPosition[4]]
+          this.colorPosition = [this.colorPosition[1], 6 - this.colorPosition[0], this.colorPosition[2], this
+            .colorPosition[3], this.colorPosition[4]
+          ]
         }
         // girdDom.innerText = `${this.colorPosition[3]}`
         // girdDom.innerText = `${this.colorPosition[0]},${this.colorPosition[1]},${this.colorPosition[2]}`
@@ -2004,10 +2003,14 @@
         // console.log('this.colorPosition===>', this.colorPosition);
 
         if (i === 1) {
-          this.colorPosition = [6 - this.colorPosition[2], this.colorPosition[0], 6 - this.colorPosition[1], this.colorPosition[3], this.colorPosition[4]]
+          this.colorPosition = [6 - this.colorPosition[2], this.colorPosition[0], 6 - this.colorPosition[1], this
+            .colorPosition[3], this.colorPosition[4]
+          ]
         }
         if (i === 2) {
-          this.colorPosition = [this.colorPosition[0], this.colorPosition[2], 6 - this.colorPosition[1], this.colorPosition[3], this.colorPosition[4]]
+          this.colorPosition = [this.colorPosition[0], this.colorPosition[2], 6 - this.colorPosition[1], this
+            .colorPosition[3], this.colorPosition[4]
+          ]
         }
 
         const X = this.colorPosition[0]
@@ -2031,8 +2034,7 @@
           }
 
           this.colorMap[X][Y][Z] = currColorClass
-        } catch (err) {
-        }
+        } catch (err) {}
       }
 
       // 记录第 i 个立方体的颜色
@@ -2081,7 +2083,11 @@
               for (let m = 0, flen = block['children'].length; m < flen; m++) { // 6个方格grid
 
                 const girdDom = block['children'][m]
-                const { X, Y, Z } = girdDom.dataset
+                const {
+                  X,
+                  Y,
+                  Z
+                } = girdDom.dataset
 
                 if (girdDom.classList[1]) {
                   girdDom.classList.replace(girdDom.classList[1], this.colorMap[X][Y][Z])

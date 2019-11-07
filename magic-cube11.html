@@ -1648,6 +1648,7 @@
         // startTarchDom 起始点, endTarchDom 结束点
         // direction 方向
         if (this.startTarchDom === null || this.endTarchDom === null) return
+        if (this.startTarchDom === this.endTarchDom) return
 
 
         // console.log('this.startTarchDom===>', this.startTarchDom)
@@ -1665,109 +1666,58 @@
             Z: z2
           } = this.endTarchDom.dataset
 
-          console.log('x1,y1,z1===>', x1, y1, z1)
-          console.log('x2,y2,z2===>', x2, y2, z2)
+          // console.log('x1,y1,z1===>', x1, y1, z1)
+          // console.log('x2,y2,z2===>', x2, y2, z2)
 
           // const startToOrigin = Math.sqrt(x1^2 + y1^2 + z1^2)
           // const endToOrigin = Math.sqrt(x2^2 + y2^2 + z2^2)
 
           const startList = [x1, y1, z1]
           const endList = [x2, y2, z2]
-          let index = -1
-
-          startList.forEach((start, startIndex) => {
-            endList.forEach((end, endIndex) => {
-              if ((end - start === 4 || end - start === -4) && startIndex === endIndex) {
-                // console.log('相差为4=================',start,end,startIndex,endIndex)
-                index = startIndex
-              }
-            })
-          })
-
-          // console.log('index===>', index);
-
-          let flag = 0
-          startList.forEach((start, startIndex) => {
-            endList.forEach((end, endIndex) => {
-              if (index != -1 && startIndex != index) {
-                if (startIndex === endIndex && end === start) {
-                  flag += 1
-                  // console.log('相等',start,end,startIndex,endIndex,'++++++++++++++++',flag)
-                }
-              }
-            })
-          })
-
-          if (flag != 2) {
-            // console.log('不满足条件')
-            return
-          }
 
           const distance = [x2 - x1, y2 - y1, z2 - z1]
-
-          if (distance.every(item => Math.abs(item) !== 4)) {
-            this.startTarchDom = null
-            this.endTarchDom = null
-            return
-          };
-          if (distance.every(item => Math.abs(item) === 0)) {
-            this.startTarchDom = null
-            this.endTarchDom = null
-            return
-          };
-
           // console.log('x1,y1,z1===>', x1, y1, z1)
           // console.log('x2,y2,z2===>', x2, y2, z2)
-          // console.log('distance===>', distance);
 
+          const rotateObj = {
+            maxIndex: 0,
+            minIndex: 0,
+            midIndex: '',
+            symbol: 0,
+          }
 
-          const coord = distance.map((item, index) => { // [x1, -4, z1]
-            if (item === 0) {
-              return startList[index]
-            } else {
-              return item
-            }
-          })
-          // console.log('coord===>', coord);
-
-          const len = coord.map(item => { // 中心坐标为(3,3,3)
-            if (Math.abs(item) !== 4) {
-              return item - 3
-            } else {
-              return item
-            }
-          })
-          // console.log('len===>', len);
-          // len = [距离, -4, 距离]
 
           let maxItem = 0
           let minItem = 4
+          let validate = -1
 
-          const rotateObj = {
-            maxIndex: '',
-            minIndex: '',
-            midIndex: '',
-            symbol: 0,
-            axis: ''
-          }
+          startList.forEach((item, index) => {
+            const el = endList[index]
 
-          len.forEach((item, index) => {
-            if (Math.abs(item) !== 4) {
-
-              if (maxItem < Math.abs(item)) {
-                maxItem = Math.abs(item)
+            if (item === el) {
+              validate++
+              if (Math.abs(item - 3) > maxItem) {
+                maxItem = Math.abs(item - 3)
                 rotateObj.maxIndex = index
               }
-              if (minItem > Math.abs(item)) {
-                minItem = Math.abs(item)
+
+              if (minItem > Math.abs(item - 3)) {
+                minItem = Math.abs(item - 3)
                 rotateObj.minIndex = index
               }
             } else {
-              rotateObj.symbol = item / 4
+              rotateObj.symbol = (el - item) / Math.abs(item - el)
+              rotateObj.midIndex = index
+
+              if ('135'.includes(el) && '135'.includes(item)) {
+                validate++
+              }
             }
           })
 
-          rotateObj.midIndex = 3 - rotateObj.minIndex - rotateObj.maxIndex
+          if (validate !== 2) {
+            return
+          }
           // console.log('rotateObj===>', rotateObj);
 
           const temp = {
