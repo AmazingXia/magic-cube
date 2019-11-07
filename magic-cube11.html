@@ -1666,8 +1666,8 @@
             Z: z2
           } = this.endTarchDom.dataset
 
-          // console.log('x1,y1,z1===>', x1, y1, z1)
-          // console.log('x2,y2,z2===>', x2, y2, z2)
+          console.log('x1,y1,z1===>', x1, y1, z1)
+          console.log('x2,y2,z2===>', x2, y2, z2)
 
           // const startToOrigin = Math.sqrt(x1^2 + y1^2 + z1^2)
           // const endToOrigin = Math.sqrt(x2^2 + y2^2 + z2^2)
@@ -1676,8 +1676,8 @@
           const endList = [x2, y2, z2]
 
           const distance = [x2 - x1, y2 - y1, z2 - z1]
-          // console.log('x1,y1,z1===>', x1, y1, z1)
-          // console.log('x2,y2,z2===>', x2, y2, z2)
+
+          if (distance.filter(Boolean).length !== 1) return
 
           const rotateObj = {
             maxIndex: 0,
@@ -1718,7 +1718,7 @@
           if (validate !== 2) {
             return
           }
-          // console.log('rotateObj===>', rotateObj);
+          console.log('rotateObj===>', rotateObj);
 
           const temp = {
             'x': 1, // x = 0平面 旋转对应的魔方序号
