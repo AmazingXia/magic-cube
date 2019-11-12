@@ -144,8 +144,8 @@
       position: absolute;
       left: 0;
       top: 0;
-      background-color: rgb(90, 85, 94);
-      background-color: rgb(62, 132, 224);
+      /* background-color: rgb(90, 85, 94); */
+      /* background-color: rgb(62, 132, 224); */
       transform: translateZ(33.33%) rotateZ(0deg);
     }
 
@@ -159,7 +159,7 @@
       position: absolute;
       left: 0;
       top: 0;
-      background-color: rgb(90, 85, 94);
+      /* background-color: rgb(90, 85, 94); */
       transform: translateZ(0) rotateZ(0deg);
     }
 
@@ -172,7 +172,7 @@
       position: absolute;
       left: 0;
       top: 0;
-      background-color: #F7685B;
+      /* background-color: #F7685B; */
       transform: translateZ(-33.33%) rotateZ(0deg);
     }
 
@@ -320,11 +320,53 @@
       margin-inline-start: 0px;
       margin-inline-end: 0px;
     }
+
+    .utils {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      text-align: center;
+      padding: 0 16px;
+      color: #fff;
+      font-size: 16px;
+      user-select: none;
+    }
+
+    .list {
+      width: auto;
+      position: absolute;
+      left: 0;
+      top: 110%;
+      width: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      background-color: #fff;
+      border: 1px solid #ebeef5;
+      border-radius: 4px;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+    }
+
+    .item {
+      list-style: none;
+      line-height: 36px;
+      padding: 5px 20px;
+      margin: 0;
+      color: #606266;
+      cursor: pointer;
+      outline: 0;
+    }
+
+    .item:hover {
+      background-color: #ecf5ff;
+      color: #66b1ff;
+    }
   </style>
 </head>
 
 <body>
-  <div class="base" id="base" style="transform: rotateX(-45deg) rotateY(33deg);">
+  <div class="base" id="base" style="transform: rotateX(140deg) rotateY(-296deg);">
     <div class="base-base base-public">
       <div class="left">
         <div class="cube cube-first cube-first-first">
@@ -1507,6 +1549,14 @@
     <img src="./img/succees.png" alt="" class="success">
     <p class="el-message__content">congratulation!!!</p>
   </div>
+  <div class="utils">
+    功能
+    <ul class="list" style="display: none;">
+      <li class="item">随机打乱</li>
+      <!-- <li class="item">自动还原</li>
+      <li class="item">查看原理</li> -->
+    </ul>
+  </div>
   <script>
     //  第一个参数的意思  true|false  事件捕获阶段冒泡阶段
 
@@ -1525,7 +1575,6 @@
         this.levelList = this.baseList[0]['children']
         this.firstBase = this.baseNode.firstElementChild
 
-        this.dragDirection = ''
         this.endTarchDom = null
         this.startTarchDom = null
         this.rotateDirection = [0, 0, 0]
@@ -1533,9 +1582,12 @@
         this.colorPosition = [null, null, null, null, null]
 
         this.colorMap = {}
+
+        this.timer = null
       }
 
       init() {
+
         document.body.addEventListener('touchmove', function (e) {
           e.preventDefault();
         }, {
@@ -1553,12 +1605,43 @@
         window.addEventListener('popstate', function () {
           history.pushState(null, null, document.URL);
         });
+        this.addBtnEvent()
 
         this.bindRotate()
         this.setColorSet()
 
         this.setCubeColorByColorSet(0)
         this.setCubeColorByColorSet(1)
+      }
+
+      addBtnEvent() {
+        const utils = document.querySelector('.utils')
+        const list = utils.firstElementChild
+        const disturbe = list.firstElementChild
+
+        // utils.addEventListener('touch', (e) => {
+        //   e.preventDefault();
+        //   if (list.style.display === 'none') {
+        //     list.style.display = 'block'
+        //   } else {
+        //     list.style.display = 'none'
+        //   }
+        // }, false)
+
+        utils.addEventListener('click', (e) => {
+          e.preventDefault();
+
+          if (list.style.display === 'none') {
+            list.style.display = 'block'
+          } else {
+            list.style.display = 'none'
+          }
+        }, false)
+
+        disturbe.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.disturbe()
+        }, false)
       }
 
       setColorSet() {
@@ -1613,7 +1696,6 @@
                         .changedTouches[0].pageY)
                       that.calcRotateMethod()
                       that.surfaceRotation()
-                      that.dragDirection = ''
                     }, {
                       capture: false,
                       passive: false,
@@ -1631,7 +1713,6 @@
                       that.endTarchDom = this
                       that.calcRotateMethod()
                       that.surfaceRotation()
-                      that.dragDirection = ''
                     }, false)
                   }
                 }
@@ -1666,8 +1747,8 @@
             Z: z2
           } = this.endTarchDom.dataset
 
-          console.log('x1,y1,z1===>', x1, y1, z1)
-          console.log('x2,y2,z2===>', x2, y2, z2)
+          // console.log('x1,y1,z1===>', x1, y1, z1)
+          // console.log('x2,y2,z2===>', x2, y2, z2)
 
           // const startToOrigin = Math.sqrt(x1^2 + y1^2 + z1^2)
           // const endToOrigin = Math.sqrt(x2^2 + y2^2 + z2^2)
@@ -1718,7 +1799,7 @@
           if (validate !== 2) {
             return
           }
-          console.log('rotateObj===>', rotateObj);
+          // console.log('rotateObj===>', rotateObj);
 
           const temp = {
             'x': 1, // x = 0平面 旋转对应的魔方序号
@@ -1755,7 +1836,7 @@
 
       // 执行旋转动作
       surfaceRotation() {
-        // console.log('this.rotateDirection==>', this.rotateDirection)
+        console.log('this.rotateDirection==>', this.rotateDirection)
         if (this.rotateDirection.every(item => item === 0)) return
 
         try {
@@ -2108,9 +2189,28 @@
       // 随机
 
       random() {
-        Math.floor(Math.random() * 3 - 1)
+        const tempRotateDirection = []
+        tempRotateDirection.push(Math.floor(Math.random() * 3))
+        tempRotateDirection.push(Math.floor(Math.random() * 3))
+        tempRotateDirection.push([1, -1][Math.floor(Math.random() * 2)])
+        return tempRotateDirection
       }
 
+      disturbe() {
+        let i = 0
+        if (this.timer) {
+          clearInterval(this.timer)
+        }
+
+        this.timer = setInterval(() => {
+          this.rotateDirection = this.random()
+          this.surfaceRotation()
+          i++
+          if (i === 150) {
+            clearInterval(this.timer)
+          }
+        }, 3);
+      }
 
       validateSuccees() {
         const leftList = []
