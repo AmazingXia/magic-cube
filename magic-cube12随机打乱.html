@@ -1835,7 +1835,7 @@
       }
 
       // 执行旋转动作
-      surfaceRotation() {
+      surfaceRotation(time = 300) {
         console.log('this.rotateDirection==>', this.rotateDirection)
         if (this.rotateDirection.every(item => item === 0)) return
 
@@ -1846,7 +1846,7 @@
               this.baseList[i].style.overflow = 'visible'
               this['baseList'][this.rotateDirection[0]]['children'][this['rotateDirection'][1]]['style'][
                 'transition'
-              ] = `transform 0.3s`
+              ] = `transform ${time}ms`
             } else {
               this.baseList[i].style.visibility = 'hidden'
               this.baseList[i].style.overflow = 'hidden'
@@ -1899,7 +1899,7 @@
             this.startTarchDom = null
             this.endTarchDom = null
 
-          }, 300)
+          }, time)
         } catch (err) {
           // 清空 还原
           this.rotateDirection[0] = 0
@@ -2204,12 +2204,12 @@
 
         this.timer = setInterval(() => {
           this.rotateDirection = this.random()
-          this.surfaceRotation()
+          this.surfaceRotation(10)
           i++
           if (i === 150) {
             clearInterval(this.timer)
           }
-        }, 3);
+        }, 12);
       }
 
       validateSuccees() {
