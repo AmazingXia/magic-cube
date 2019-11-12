@@ -2204,12 +2204,12 @@
 
         this.timer = setInterval(() => {
           this.rotateDirection = this.random()
-          this.surfaceRotation(10)
+          this.surfaceRotation(3)
           i++
           if (i === 150) {
             clearInterval(this.timer)
           }
-        }, 12);
+        }, 5);
       }
 
       validateSuccees() {
