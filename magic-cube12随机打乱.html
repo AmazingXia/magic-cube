@@ -140,7 +140,7 @@
       /* transform: translate3d(0px, 0px, 80px); */
       transform-style: preserve-3d;
       transform-origin: 50% 50%;
-      transition: transform 0.3s linear;
+      transition: transform 0.2s linear;
       position: absolute;
       left: 0;
       top: 0;
@@ -155,7 +155,7 @@
       transform: translate3d(0px, 0px, 0px);
       transform-style: preserve-3d;
       transform-origin: 50% 50%;
-      transition: transform 0.3s linear;
+      transition: transform 0.2s linear;
       position: absolute;
       left: 0;
       top: 0;
@@ -168,7 +168,7 @@
       height: 240px;
       transform-style: preserve-3d;
       transform-origin: 50% 50%;
-      transition: transform 0.3s linear;
+      transition: transform 0.2s linear;
       position: absolute;
       left: 0;
       top: 0;
@@ -2204,12 +2204,12 @@
 
         this.timer = setInterval(() => {
           this.rotateDirection = this.random()
-          this.surfaceRotation(0)
+          this.surfaceRotation(200)
           i++
           if (i === 150) {
             clearInterval(this.timer)
           }
-        }, 5);
+        }, 250);
       }
 
       validateSuccees() {
