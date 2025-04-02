@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>guba</title>
   <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
     html {
       height: 100%;
       overflow: hidden;
@@ -36,35 +41,52 @@
     }
 
     .info {
-      width: 80%;
+      width: fit-content;
       margin: 20px auto;
       font-size: 16px;
       line-height: 1.2;
+    }
+
+    .loading {
+      text-align: center;
+      line-height: 36px;
     }
   </style>
 </head>
 
 <body>
   <input type="text" id="code" placeholder="请输入查询内容" />
+  <div class="loading" style="display: none;">查询中...</div>
   <div class="info"></div>
 
   <script>
+    let isFetching = false; // 防止重复查询
+
     document.getElementById("code").addEventListener("change", function (e) {
       handleRequest(e.target.value);
     });
+
     document.getElementById("code").addEventListener("keydown", function (e) {
       if (e.key === "Enter") { // 检测回车键
         handleRequest(e.target.value);
       }
     });
+
     async function handleRequest(code) {
-      if (!code) return;
+      if (!code || isFetching) return; // 避免重复查询
+      isFetching = true;
+      document.querySelector('.loading').style.display = 'block'; // 显示加载中
+      document.querySelector('.info').innerHTML = ''; // 清空之前的查询结果
+
       try {
         const res = await getGubaCount(code);
-        const info = `${res.bar_info.ShortName}(${res.bar_info.ShowCode})帖子近5天查询结果如下:<br>`
+        const info = `${res.bar_info.ShortName}(${res.bar_info.ShowCode})帖子近5天查询结果如下:<br>`;
         document.querySelector('.info').innerHTML = info + res.str.replaceAll('\n', '<br>');
       } catch (error) {
         document.querySelector('.info').innerHTML = '超时，请重试';
+      } finally {
+        isFetching = false;
+        document.querySelector('.loading').style.display = 'none'; // 查询完成，隐藏加载中
       }
     }
 
@@ -72,8 +94,7 @@
     async function getGubaCount(code) {
       const response = await fetch(`https://api.amazingxia.top/query/stock/gubacount?code=${code}`);
       if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
-      const data = await response.json();
-      return data
+      return await response.json();
     }
 
   </script>
