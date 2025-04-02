@@ -34,78 +34,49 @@
       -webkit-appearance: none;
       outline: 0;
     }
+
+    .info {
+      width: 80%;
+      margin: 20px auto;
+      font-size: 16px;
+      line-height: 1.2;
+    }
   </style>
 </head>
 
 <body>
   <input type="text" id="code" placeholder="请输入查询内容" />
+  <div class="info"></div>
 
   <script>
     document.getElementById("code").addEventListener("change", function (e) {
       handleRequest(e.target.value);
     });
+    document.getElementById("code").addEventListener("keydown", function (e) {
+      if (e.key === "Enter") { // 检测回车键
+        handleRequest(e.target.value);
+      }
+    });
     async function handleRequest(code) {
-      const days = 5;
+      if (!code) return;
       try {
-        const res = await calcCount(code, days);
-        res.str = Object.keys(res.info).map((key) => `${key}: ${res.info[key]}`).join("\n");
-        console.log('res===>', res);
+        const res = await getGubaCount(code);
+        const info = `${res.bar_info.ShortName}(${res.bar_info.ShowCode})帖子近5天查询结果如下:<br>`
+        document.querySelector('.info').innerHTML = info + res.str.replaceAll('\n', '<br>');
       } catch (error) {
-        console.log('error===>', error);
+        document.querySelector('.info').innerHTML = '超时，请重试';
       }
     }
 
-    // 计算某股票过去 `days` 天的帖子数量
-    async function calcCount(code, days = 5) {
-      let page = 1;
-      const res = {
-        info: {},
-      };
-      const targetDay = new Date();
-      targetDay.setDate(targetDay.getDate() - days);
-      const targetDateStr = targetDay.toISOString().slice(0, 10).replace(/-/g, ""); // 格式化 YYYYMMDD
-
-      while (true) {
-        const { list, bar_info } = await getGubaCount(code, page++);
-        if (!list || list.length === 0) break; // 没有数据就停止
-
-        if (!res.bar_info) {
-          res.bar_info = bar_info
-        }
-
-        for (const item of list) {
-          const postDay = new Date(item.post_last_time).toISOString().slice(0, 10).replace(/-/g, "");
-
-          if (postDay <= targetDateStr) {
-            return res; // 如果已经到目标日期，直接返回结果
-          }
-
-          res.info[postDay] = (res.info[postDay] || 0) + 1;
-        }
-      }
-      return res;
-    }
     // 获取股票帖子数据
-    async function getGubaCount(code = "301366", page = 1) {
+    async function getGubaCount(code) {
       const response = await fetch(`https://api.amazingxia.top/query/stock/gubacount?code=${code}`);
-
       if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
-
       const data = await response.json();
-      return {
-        list: data.re || [],
-        bar_info: {
-          OuterCode: data.bar_info?.OuterCode || "",
-          ShowCode: data.bar_info?.ShowCode || "",
-          ShortName: data.bar_info?.ShortName || "",
-        }
-      };
+      return data
     }
 
   </script>
-
-
-
 </body>
 
 </html>
