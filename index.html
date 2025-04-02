@@ -31,6 +31,8 @@
       width: 300px;
       display: block;
       margin: 0 auto;
+      -webkit-appearance: none;
+      outline: 0;
     }
   </style>
 </head>
@@ -85,19 +87,7 @@
     }
     // 获取股票帖子数据
     async function getGubaCount(code = "301366", page = 1) {
-      const curl = `curl https://gbapi.eastmoney.com/webarticlelist/api/Article/WebArticleList?code=${code}&p=${page}&ps=500&sorttype=0&plat=wap&version=300&product=guba&deviceid=1`;
-
-      const postData = {
-        curl: curl
-      };
-
-      const response = await fetch('https://capis-ecs.didapinche.com/web/webtool/bfs/bigfile/curl', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(postData)
-      });
+      const response = await fetch(`https://api.amazingxia.top/query/stock/gubacount?code=${code}`);
 
       if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
